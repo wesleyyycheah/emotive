@@ -1,22 +1,22 @@
 {
   "files": {
-    "app.js": "/emotive/static/js/app.751e3f7e.chunk.js",
-    "app.js.map": "/emotive/static/js/app.751e3f7e.chunk.js.map",
+    "app.js": "/emotive/static/js/app.1fbf8598.chunk.js",
+    "app.js.map": "/emotive/static/js/app.1fbf8598.chunk.js.map",
     "runtime~app.js": "/emotive/static/js/runtime~app.3d9cac35.js",
     "runtime~app.js.map": "/emotive/static/js/runtime~app.3d9cac35.js.map",
-    "static/js/2.80d4e235.chunk.js": "/emotive/static/js/2.80d4e235.chunk.js",
-    "static/js/2.80d4e235.chunk.js.map": "/emotive/static/js/2.80d4e235.chunk.js.map",
+    "static/js/2.9eb4bd8f.chunk.js": "/emotive/static/js/2.9eb4bd8f.chunk.js",
+    "static/js/2.9eb4bd8f.chunk.js.map": "/emotive/static/js/2.9eb4bd8f.chunk.js.map",
     "favicon-16.png": "/emotive/favicon-16.png",
     "favicon-32.png": "/emotive/favicon-32.png",
     "favicon.ico": "/emotive/favicon.ico",
     "index.html": "/emotive/index.html",
     "manifest.json": "/emotive/manifest.json",
     "serve.json": "/emotive/serve.json",
-    "static/js/2.80d4e235.chunk.js.LICENSE.txt": "/emotive/static/js/2.80d4e235.chunk.js.LICENSE.txt"
+    "static/js/2.9eb4bd8f.chunk.js.LICENSE.txt": "/emotive/static/js/2.9eb4bd8f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime~app.3d9cac35.js",
-    "static/js/2.80d4e235.chunk.js",
-    "static/js/app.751e3f7e.chunk.js"
+    "static/js/2.9eb4bd8f.chunk.js",
+    "static/js/app.1fbf8598.chunk.js"
   ]
 }
