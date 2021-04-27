@@ -6,4 +6,8 @@ jobs:
     steps:
       - checkout
       - run: npm install
+      - run:
+          command: |
+            git config user.email "scribhneoir21@gmail.com"
+            git config user.name "scribhneoir"
       - run: yarn deploy
