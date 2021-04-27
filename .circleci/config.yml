@@ -7,8 +7,5 @@ jobs:
       name: node/default
       tag: '14.x'
     steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
+      - run: npm install
       - run: npm run deploy
