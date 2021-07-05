@@ -1,6 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
-  "homepage": "http://scribhneoir.github.io/emotive",
+  "homepage": "http://emotiv.app",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
