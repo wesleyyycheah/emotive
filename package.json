@@ -8,7 +8,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "deploy": "gh-pages -d web-build",
-    "predeploy": "expo build:web || true"
+    "webBuild": "expo build:web || true",
+    "addDomain": "echo \"emotiv.app\" > web-build/CNAME"
   },
   "dependencies": {
     "expo": "~41.0.1",
