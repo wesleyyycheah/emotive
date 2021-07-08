@@ -15,4 +15,5 @@ jobs:
       - run: yarn deploy
     filters:
       branches:
-        only: main
+        only:
+          - main
