@@ -13,3 +13,6 @@ jobs:
       - run: npm run webBuild
       - run: npm run addDomain
       - run: yarn deploy
+    filters:
+      branches:
+        only: main
