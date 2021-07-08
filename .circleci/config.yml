@@ -1,12 +1,20 @@
 version: 2.1
-jobs:
-  build:
-    filters:
-      branches:
-        only:
-          - main
+executors:
+  node-executor:
     docker:
       - image: circleci/node:14
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - webDeploy:
+          filters:
+            branches:
+              only:
+                - main
+jobs:
+  webDeploy:
+    executor: node-executor
     steps:
       - checkout
       - run: npm install
