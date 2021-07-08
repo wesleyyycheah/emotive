@@ -10,6 +10,6 @@ jobs:
           command: |
             git config user.email $EMAIL
             git config user.name $NAME
-      - run: npm webBuild
-      - run: npm addDomain
+      - run: npm run webBuild
+      - run: npm run addDomain
       - run: yarn deploy
