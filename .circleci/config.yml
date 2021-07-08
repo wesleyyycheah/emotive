@@ -1,6 +1,10 @@
 version: 2.1
 jobs:
   build:
+    filters:
+      branches:
+        only:
+          - main
     docker:
       - image: circleci/node:14
     steps:
@@ -13,7 +17,3 @@ jobs:
       - run: npm run webBuild
       - run: npm run addDomain
       - run: yarn deploy
-    filters:
-      branches:
-        only:
-          - main
