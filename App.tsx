@@ -1,17 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import Avatar from './components/Avatar';
 import styled from 'styled-components';
 
 export default function App() {
-  const logo = require('./assets/adaptive-icon.png');
   return (
-    <View style={styles.container}>
-      <img src={logo} height={'10%'} />
-      <Text>Emotive will be available within the next year!</Text>
-      <Text>Stay tuned for our open beta program</Text>
+    <SafeAreaView style={styles.container}>
+      <Avatar />
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -19,7 +17,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
