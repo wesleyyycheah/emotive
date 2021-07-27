@@ -8,63 +8,62 @@ import Ear1 from './AvatarParts/Ear';
 import styled from 'styled-components/native';
 import Hair1 from './AvatarParts/Hair';
 
+const sizeM = 1.5;
+
 const NoseC = styled.View`
   position: absolute;
-  height: 20%;
-  width: 20%;
-  margin: 5% 20% 0 0%;
+  height: ${20 * sizeM}px;
+  width: ${20 * sizeM}px;
+  margin-left: ${25 * sizeM}px;
+  margin-top: ${50 * sizeM}px;
 `;
 const EyeL = styled.View`
   position: absolute;
-  height: 20%;
-  width: 20%;
-  margin: -20% 0% 0 0%;
+  height: ${20 * sizeM}px;
+  width: ${20 * sizeM}px;
+  margin-left: ${15 * sizeM}px;
+  margin-top: ${35 * sizeM}px;
 `;
 const EyeR = styled.View`
   position: absolute;
-  height: 20%;
-  width: 20%;
-  margin: -20% 40% 0 0%;
+  height: ${20 * sizeM}px;
+  width: ${20 * sizeM}px;
+  margin-left: ${35 * sizeM}px;
+  margin-top: ${37 * sizeM}px;
 `;
 const HeadC = styled.View`
-  margin-left: auto;
-  margin-right: auto;
   position: absolute;
-  height: 100%;
-  width: 100%;
+  height: ${100 * sizeM}px;
+  width: ${100 * sizeM}px;
+  margin-left: ${0 * sizeM}px;
+  margin-top: ${0 * sizeM}px;
 `;
 const MouthC = styled.View`
-  margin-left: auto;
-  margin-right: auto;
   position: absolute;
-  height: 30%;
-  width: 30%;
-  margin: 40% 0% 0 0%;
+  height: ${20 * sizeM}px;
+  width: ${20 * sizeM}px;
+  margin-left: ${30 * sizeM}px;
+  margin-top: ${65 * sizeM}px;
 `;
 const EarC = styled.View`
-  margin-left: auto;
-  margin-right: auto;
   position: absolute;
-  height: 30%;
-  width: 30%;
-  margin: -10% -65% 0 0%;
+  height: ${30 * sizeM}px;
+  width: ${30 * sizeM}px;
+  margin-left: ${60 * sizeM}px;
+  margin-top: ${35 * sizeM}px;
 `;
 const HairC = styled.View`
-  margin-left: auto;
-  margin-right: auto;
   position: absolute;
-  height: 85%;
-  width: 85%;
-  margin: -50% -5% 0 0%;
+  height: ${85 * sizeM}px;
+  width: ${85 * sizeM}px;
+  margin-left: ${5 * sizeM}px;
+  margin-top: ${-17 * sizeM}px;
 `;
 const AvatarC = styled.View`
-  top: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 80px;
   position: absolute;
-  height: 250px;
-  width: 250px;
+  width: 100px;
+  height: 100px;
 `;
 class Avatar extends Component {
   state = {};
