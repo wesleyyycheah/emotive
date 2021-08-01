@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
 
-function Head5(props: SvgProps) {
+function Head(props: SvgProps) {
   return (
     <Svg viewBox="0 0 1024 1325" {...props}>
       <Path
@@ -12,4 +12,4 @@ function Head5(props: SvgProps) {
   );
 }
 
-export default Head5;
+export default Head;

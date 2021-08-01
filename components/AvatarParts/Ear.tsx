@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
 
-function SvgComponent(props: SvgProps) {
+function Ear(props: SvgProps) {
   return (
     <Svg viewBox="0 0 664 869" {...props}>
       <Path
@@ -20,4 +20,4 @@ function SvgComponent(props: SvgProps) {
   );
 }
 
-export default SvgComponent;
+export default Ear;

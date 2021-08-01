@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
 
-function Mouth1(props: SvgProps) {
+function Mouth(props: SvgProps) {
   return (
     <Svg viewBox="0 0 323 219" {...props}>
       <Path
@@ -12,4 +12,4 @@ function Mouth1(props: SvgProps) {
   );
 }
 
-export default Mouth1;
+export default Mouth;

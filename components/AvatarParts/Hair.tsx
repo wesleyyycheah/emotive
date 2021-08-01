@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
 
-function Hair1(props: SvgProps) {
+function Hair(props: SvgProps) {
   return (
     <Svg viewBox="0 0 930 714" {...props}>
       <Path
@@ -12,4 +12,4 @@ function Hair1(props: SvgProps) {
   );
 }
 
-export default Hair1;
+export default Hair;

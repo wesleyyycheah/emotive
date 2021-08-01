@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
 
-function Nose1(props: SvgProps) {
+function Nose(props: SvgProps) {
   return (
     <Svg viewBox="0 0 321 220" {...props}>
       <Path
@@ -12,4 +12,4 @@ function Nose1(props: SvgProps) {
   );
 }
 
-export default Nose1;
+export default Nose;
