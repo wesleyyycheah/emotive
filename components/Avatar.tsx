@@ -8,7 +8,7 @@ import Ear from './AvatarParts/Ear';
 import styled from 'styled-components/native';
 import Hair from './AvatarParts/Hair';
 import { PixelRatio } from 'react-native';
-import { Button } from 'react-native';
+import { Button, Pressable } from 'react-native';
 
 interface StyledProps {
   size: number;
@@ -16,9 +16,25 @@ interface StyledProps {
   top: number;
   type: number;
 }
+type AvatarState = {
+  avatar: {
+    [key in partsKey]: {
+      color?: string;
+      type: number;
+      size: number;
+      top: number;
+      left: number;
+    };
+  };
+};
+type AvatarProps = {};
+type partsKey = 'hair' | 'head' | 'ear' | 'eyeL' | 'eyeR' | 'nose' | 'mouth'; // create some types to define the 'types' object
 
+type partsType = {
+  [key in partsKey]: Array<{ size: number; top: number; left: number }>;
+};
 //provides preset sizing and placement offsets that fit most faces
-const partsModifier = {
+const partsModifier: partsType = {
   hair: [
     { size: 0, top: -5, left: 5 },
     { size: 0, top: 0, left: 0 },
@@ -37,7 +53,17 @@ const partsModifier = {
     { size: 0, top: 0, left: 0 },
     { size: 0, top: 0, left: 0 },
   ],
-  eye: [
+  eyeL: [
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: -5, top: 4, left: 3 },
+    { size: 0, top: 0, left: 0 },
+    { size: -7, top: 5, left: 4 },
+    { size: -5, top: 3, left: 4 },
+    { size: -10, top: 8, left: 6 },
+    { size: -10, top: 5, left: 6 },
+  ],
+  eyeR: [
     { size: 0, top: 0, left: 0 },
     { size: 0, top: 0, left: 0 },
     { size: -5, top: 4, left: 3 },
@@ -98,38 +124,38 @@ let EyeL = styled.View<StyledProps>`
   position: absolute;
   height: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.eye[props.type].size) * sizeM,
+      (props.size + partsModifier.eyeL[props.type].size) * sizeM,
     )}px;
   width: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.eye[props.type].size) * sizeM,
+      (props.size + partsModifier.eyeL[props.type].size) * sizeM,
     )}px;
   left: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.left + partsModifier.eye[props.type].left) * sizeM,
+      (props.left + partsModifier.eyeL[props.type].left) * sizeM,
     )}px;
   top: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.top + partsModifier.eye[props.type].top) * sizeM,
+      (props.top + partsModifier.eyeL[props.type].top) * sizeM,
     )}px;
 `;
 let EyeR = styled.View<StyledProps>`
   position: absolute;
   height: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.eye[props.type].size) * sizeM,
+      (props.size + partsModifier.eyeR[props.type].size) * sizeM,
     )}px;
   width: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.eye[props.type].size) * sizeM,
+      (props.size + partsModifier.eyeR[props.type].size) * sizeM,
     )}px;
   left: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.left + partsModifier.eye[props.type].left) * sizeM,
+      (props.left + partsModifier.eyeR[props.type].left) * sizeM,
     )}px;
   top: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.top + partsModifier.eye[props.type].top) * sizeM,
+      (props.top + partsModifier.eyeR[props.type].top) * sizeM,
     )}px;
 `;
 let HeadC = styled.View<StyledProps>`
@@ -214,25 +240,31 @@ let AvatarC = styled.View`
 `;
 
 //avatar class component
-class Avatar extends Component {
+class Avatar extends Component<AvatarProps, AvatarState> {
   //avatar state object
-  state = {
-    avatar: {
-      hair: { color: '#291600', type: 1, size: 85, top: -17, left: 5 },
-      head: { color: '#e6c9a1', type: 5, size: 100, top: 0, left: 0 },
-      ear: { type: 1, size: 30, top: 35, left: 60 },
-      eyeL: { type: 0, size: 20, top: 35, left: 15 },
-      eyeR: { type: 0, size: 20, top: 35, left: 37 },
-      nose: { type: 0, size: 20, top: 50, left: 25 },
-      mouth: { type: 0, size: 20, top: 65, left: 30 },
-    },
-  };
+  constructor(props: AvatarProps) {
+    super(props);
+    this.state = {
+      avatar: {
+        hair: { color: '#291600', type: 1, size: 85, top: -17, left: 5 },
+        head: { color: '#e6c9a1', type: 5, size: 100, top: 0, left: 0 },
+        ear: { type: 1, size: 30, top: 35, left: 60 },
+        eyeL: { type: 0, size: 20, top: 35, left: 15 },
+        eyeR: { type: 0, size: 20, top: 35, left: 37 },
+        nose: { type: 0, size: 20, top: 50, left: 25 },
+        mouth: { type: 0, size: 20, top: 65, left: 30 },
+      },
+    };
+  }
+
   //example avatar editing function
-  handleButton = () => {
+  onPressFunction(part: partsKey): null {
     let avatar = this.state.avatar;
-    avatar.eyeL.type = 1;
+    avatar[part].type = (avatar[part].type + 1) % partsModifier[part].length;
     this.setState({ avatar: avatar });
-  };
+    return null;
+  }
+
   //JSX render code
   render() {
     let { avatar } = this.state;
@@ -245,7 +277,13 @@ class Avatar extends Component {
             left={avatar.head.left}
             type={avatar.head.type}
           >
-            <Head type={avatar.head.type} color={avatar.head.color} />
+            <Pressable
+              onPress={() => {
+                this.onPressFunction('head');
+              }}
+            >
+              <Head type={avatar.head.type} color={avatar.head.color} />
+            </Pressable>
           </HeadC>
           <HairC
             size={avatar.hair.size}
@@ -253,7 +291,13 @@ class Avatar extends Component {
             left={avatar.hair.left}
             type={avatar.hair.type}
           >
-            <Hair type={avatar.hair.type} color={avatar.hair.color} />
+            <Pressable
+              onPress={() => {
+                this.onPressFunction('hair');
+              }}
+            >
+              <Hair type={avatar.hair.type} color={avatar.hair.color} />
+            </Pressable>
           </HairC>
           <NoseC
             size={avatar.nose.size}
@@ -261,7 +305,13 @@ class Avatar extends Component {
             left={avatar.nose.left}
             type={avatar.nose.type}
           >
-            <Nose type={avatar.nose.type} />
+            <Pressable
+              onPress={() => {
+                this.onPressFunction('nose');
+              }}
+            >
+              <Nose type={avatar.nose.type} />
+            </Pressable>
           </NoseC>
           <EyeL
             size={avatar.eyeL.size}
@@ -269,7 +319,13 @@ class Avatar extends Component {
             left={avatar.eyeL.left}
             type={avatar.eyeL.type}
           >
-            <Eye type={avatar.eyeL.type} />
+            <Pressable
+              onPress={() => {
+                this.onPressFunction('eyeL');
+              }}
+            >
+              <Eye type={avatar.eyeL.type} />
+            </Pressable>
           </EyeL>
           <EyeR
             size={avatar.eyeR.size}
@@ -277,7 +333,13 @@ class Avatar extends Component {
             left={avatar.eyeR.left}
             type={avatar.eyeR.type}
           >
-            <Eye type={avatar.eyeR.type} />
+            <Pressable
+              onPress={() => {
+                this.onPressFunction('eyeR');
+              }}
+            >
+              <Eye type={avatar.eyeR.type} />
+            </Pressable>
           </EyeR>
           <MouthC
             size={avatar.mouth.size}
@@ -285,7 +347,13 @@ class Avatar extends Component {
             left={avatar.mouth.left}
             type={avatar.mouth.type}
           >
-            <Mouth type={avatar.mouth.type} />
+            <Pressable
+              onPress={() => {
+                this.onPressFunction('mouth');
+              }}
+            >
+              <Mouth type={avatar.mouth.type} />
+            </Pressable>
           </MouthC>
           <EarC
             size={avatar.ear.size}
@@ -293,7 +361,13 @@ class Avatar extends Component {
             left={avatar.ear.left}
             type={avatar.ear.type}
           >
-            <Ear type={avatar.ear.type} />
+            <Pressable
+              onPress={() => {
+                this.onPressFunction('ear');
+              }}
+            >
+              <Ear type={avatar.ear.type} />
+            </Pressable>
           </EarC>
         </AvatarC>
       </>
