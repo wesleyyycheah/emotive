@@ -16,92 +16,74 @@ interface StyledProps {
   top: number;
   type: number;
 }
+
+//provides preset sizing and placement offsets that fit most faces
 const partsModifier = {
   hair: [
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
+    { size: 0, top: -5, left: 5 },
+    { size: 0, top: 0, left: 0 },
+    { size: 5, top: -10, left: 10 },
   ],
   head: [
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
+    { size: 5, top: 0, left: -7 },
+    { size: 10, top: 5, left: -7 },
+    { size: 0, top: 0, left: -3 },
+    { size: -10, top: 7, left: -7 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: -1 },
   ],
   ear: [
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
   ],
   eye: [
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: -5, top: 4, left: 3 },
+    { size: 0, top: 0, left: 0 },
+    { size: -7, top: 5, left: 4 },
+    { size: -5, top: 3, left: 4 },
+    { size: -10, top: 8, left: 6 },
+    { size: -10, top: 5, left: 6 },
   ],
   nose: [
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: -5, left: 0 },
+    { size: 3, top: -5, left: -3 },
+    { size: 0, top: -3, left: 0 },
+    { size: 5, top: -5, left: -2 },
+    { size: 0, top: -3, left: 2 },
+    { size: 0, top: -5, left: 0 },
+    { size: 0, top: -2, left: 0 },
   ],
   mouth: [
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
-    { height: 0, width: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
+    { size: 0, top: 0, left: 0 },
   ],
 };
 
+//size multiplier
 let sizeM = 3;
 
+//containers that position and size the parts
 let NoseC = styled.View<StyledProps>`
   position: absolute;
   height: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.nose[props.type].height) * sizeM,
+      (props.size + partsModifier.nose[props.type].size) * sizeM,
     )}px;
   width: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.nose[props.type].width) * sizeM,
+      (props.size + partsModifier.nose[props.type].size) * sizeM,
     )}px;
   left: ${(props) =>
     PixelRatio.roundToNearestPixel(
@@ -116,11 +98,11 @@ let EyeL = styled.View<StyledProps>`
   position: absolute;
   height: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.eye[props.type].height) * sizeM,
+      (props.size + partsModifier.eye[props.type].size) * sizeM,
     )}px;
   width: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.eye[props.type].width) * sizeM,
+      (props.size + partsModifier.eye[props.type].size) * sizeM,
     )}px;
   left: ${(props) =>
     PixelRatio.roundToNearestPixel(
@@ -135,11 +117,11 @@ let EyeR = styled.View<StyledProps>`
   position: absolute;
   height: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.eye[props.type].height) * sizeM,
+      (props.size + partsModifier.eye[props.type].size) * sizeM,
     )}px;
   width: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.eye[props.type].width) * sizeM,
+      (props.size + partsModifier.eye[props.type].size) * sizeM,
     )}px;
   left: ${(props) =>
     PixelRatio.roundToNearestPixel(
@@ -154,11 +136,11 @@ let HeadC = styled.View<StyledProps>`
   position: absolute;
   height: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.head[props.type].height) * sizeM,
+      (props.size + partsModifier.head[props.type].size) * sizeM,
     )}px;
   width: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.head[props.type].width) * sizeM,
+      (props.size + partsModifier.head[props.type].size) * sizeM,
     )}px;
   left: ${(props) =>
     PixelRatio.roundToNearestPixel(
@@ -173,11 +155,11 @@ let MouthC = styled.View<StyledProps>`
   position: absolute;
   height: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.mouth[props.type].height) * sizeM,
+      (props.size + partsModifier.mouth[props.type].size) * sizeM,
     )}px;
   width: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.mouth[props.type].width) * sizeM,
+      (props.size + partsModifier.mouth[props.type].size) * sizeM,
     )}px;
   left: ${(props) =>
     PixelRatio.roundToNearestPixel(
@@ -192,11 +174,11 @@ let EarC = styled.View<StyledProps>`
   position: absolute;
   height: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.ear[props.type].height) * sizeM,
+      (props.size + partsModifier.ear[props.type].size) * sizeM,
     )}px;
   width: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.ear[props.type].width) * sizeM,
+      (props.size + partsModifier.ear[props.type].size) * sizeM,
     )}px;
   left: ${(props) =>
     PixelRatio.roundToNearestPixel(
@@ -211,11 +193,11 @@ let HairC = styled.View<StyledProps>`
   position: absolute;
   height: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.hair[props.type].height) * sizeM,
+      (props.size + partsModifier.hair[props.type].size) * sizeM,
     )}px;
   width: ${(props) =>
     PixelRatio.roundToNearestPixel(
-      (props.size + partsModifier.hair[props.type].width) * sizeM,
+      (props.size + partsModifier.hair[props.type].size) * sizeM,
     )}px;
   left: ${(props) =>
     PixelRatio.roundToNearestPixel(
@@ -231,11 +213,13 @@ let AvatarC = styled.View`
   left: ${PixelRatio.roundToNearestPixel(-50 * sizeM)}px;
 `;
 
+//avatar class component
 class Avatar extends Component {
+  //avatar state object
   state = {
     avatar: {
       hair: { color: '#291600', type: 1, size: 85, top: -17, left: 5 },
-      head: { color: '#e6c9a1', type: 0, size: 100, top: 0, left: 0 },
+      head: { color: '#e6c9a1', type: 5, size: 100, top: 0, left: 0 },
       ear: { type: 1, size: 30, top: 35, left: 60 },
       eyeL: { type: 0, size: 20, top: 35, left: 15 },
       eyeR: { type: 0, size: 20, top: 35, left: 37 },
@@ -243,11 +227,13 @@ class Avatar extends Component {
       mouth: { type: 0, size: 20, top: 65, left: 30 },
     },
   };
+  //example avatar editing function
   handleButton = () => {
     let avatar = this.state.avatar;
     avatar.eyeL.type = 1;
     this.setState({ avatar: avatar });
   };
+  //JSX render code
   render() {
     let { avatar } = this.state;
     return (
