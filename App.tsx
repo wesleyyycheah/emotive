@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import Avatar from './components/Avatar';
+import AvatarCreator from './components/AvatarCreator';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Avatar />
+      <AvatarCreator />
       <StatusBar style="auto" />
     </View>
   );
