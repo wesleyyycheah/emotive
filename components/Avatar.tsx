@@ -1,22 +1,30 @@
 import * as React from 'react';
-import Head from './AvatarParts/Head';
 import { Component } from 'react';
+import Head from './AvatarParts/Head';
 import Nose from './AvatarParts/Nose';
 import Eye from './AvatarParts/Eye';
 import Mouth from './AvatarParts/Mouth';
 import Ear from './AvatarParts/Ear';
-import styled from 'styled-components/native';
 import Hair from './AvatarParts/Hair';
-import { PixelRatio } from 'react-native';
-import { Button, Pressable } from 'react-native';
+import styled from 'styled-components/native';
+import { PixelRatio, Pressable } from 'react-native';
 
+//This is way too many comments.
+//I just wanted to show you the basic structure of a React State component in typescript
+//Thank you for being awesome!
+
+//type definitions
+//props that are expected to be passed to a styled component
 interface StyledProps {
   size: number;
   left: number;
   top: number;
   type: number;
 }
+//state expected for Avatar component
 type AvatarState = {
+  //should make avatar props instead of state
+  //should add rotation variable
   avatar: {
     [key in partsKey]: {
       color?: string;
@@ -27,13 +35,19 @@ type AvatarState = {
     };
   };
 };
+
+//props expected for Avatar component
 type AvatarProps = {};
-type partsKey = 'hair' | 'head' | 'ear' | 'eyeL' | 'eyeR' | 'nose' | 'mouth'; // create some types to define the 'types' object
+
+//define strings that are keys for avatar object and partsModifier object
+type partsKey = 'hair' | 'head' | 'ear' | 'eyeL' | 'eyeR' | 'nose' | 'mouth';
 
 type partsType = {
   [key in partsKey]: Array<{ size: number; top: number; left: number }>;
 };
+
 //provides preset sizing and placement offsets that fit most faces
+//TODO add variant for web
 const partsModifier: partsType = {
   hair: [
     { size: 0, top: -5, left: 5 },
@@ -93,14 +107,15 @@ const partsModifier: partsType = {
     { size: 0, top: 0, left: 0 },
     { size: 0, top: 0, left: 0 },
     { size: 0, top: 0, left: 0 },
-    { size: 0, top: 0, left: 0 },
   ],
 };
 
 //size multiplier
+//TODO: make this props instead of random variable
 let sizeM = 3;
 
 //containers that position and size the parts
+//TODO: add rotation support
 let NoseC = styled.View<StyledProps>`
   position: absolute;
   height: ${(props) =>
@@ -241,9 +256,10 @@ let AvatarC = styled.View`
 
 //avatar class component
 class Avatar extends Component<AvatarProps, AvatarState> {
-  //avatar state object
+  //avatar constructor
   constructor(props: AvatarProps) {
     super(props);
+    //define state
     this.state = {
       avatar: {
         hair: { color: '#291600', type: 1, size: 85, top: -17, left: 5 },
@@ -257,11 +273,16 @@ class Avatar extends Component<AvatarProps, AvatarState> {
     };
   }
 
-  //example avatar editing function
+  //example avatar editing function (called when tapping a component)
+  //functionName(parameterName: parameterType):returnType
   onPressFunction(part: partsKey): null {
+    //make a copy of avatar
     let avatar = this.state.avatar;
+    //set the avatar part to it + 1 mod by the length of the parts so it doesn't run out
     avatar[part].type = (avatar[part].type + 1) % partsModifier[part].length;
+    //set state of avatar to avatar copy
     this.setState({ avatar: avatar });
+    //return nothing
     return null;
   }
 
@@ -271,17 +292,22 @@ class Avatar extends Component<AvatarProps, AvatarState> {
     return (
       <>
         <AvatarC>
+          {/* head container (styled component) */}
           <HeadC
+            //head container props
             size={avatar.head.size}
             top={avatar.head.top}
             left={avatar.head.left}
             type={avatar.head.type}
           >
+            {/* container that makes a function run when it is tapped */}
             <Pressable
+              // function to run when it is pressed
               onPress={() => {
                 this.onPressFunction('head');
               }}
             >
+              {/* head component */}
               <Head type={avatar.head.type} color={avatar.head.color} />
             </Pressable>
           </HeadC>
