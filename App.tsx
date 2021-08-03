@@ -1,8 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import Avatar from './components/Avatar';
-import styled from 'styled-components';
 
 export default function App() {
   return (
