@@ -251,6 +251,7 @@ let HairC = styled.View<StyledProps>`
 let AvatarC = styled.View<{ sizeX: number }>`
   top: ${(props) => PixelRatio.roundToNearestPixel(-50 * props.sizeX)}px;
   left: ${(props) => PixelRatio.roundToNearestPixel(-50 * props.sizeX)}px;
+  flex: 0;
 `;
 
 //avatar class component
@@ -264,120 +265,118 @@ class Avatar extends Component<AvatarProps, AvatarState> {
   render() {
     let { avatar, onPressFunction } = this.props;
     return (
-      <>
-        <AvatarC sizeX={this.props.sizeX}>
-          {/* head container (styled component) */}
-          <HeadC
-            //head container props
-            size={avatar.head.size}
-            top={avatar.head.top}
-            left={avatar.head.left}
-            type={avatar.head.type}
-            sizeX={this.props.sizeX}
+      <AvatarC sizeX={this.props.sizeX}>
+        {/* head container (styled component) */}
+        <HeadC
+          //head container props
+          size={avatar.head.size}
+          top={avatar.head.top}
+          left={avatar.head.left}
+          type={avatar.head.type}
+          sizeX={this.props.sizeX}
+        >
+          {/* container that makes a function run when it is tapped */}
+          <Pressable
+            // function to run when it is pressed
+            onPress={() => {
+              onPressFunction('head');
+            }}
           >
-            {/* container that makes a function run when it is tapped */}
-            <Pressable
-              // function to run when it is pressed
-              onPress={() => {
-                onPressFunction('head');
-              }}
-            >
-              {/* head component */}
-              <Head type={avatar.head.type} color={avatar.head.color} />
-            </Pressable>
-          </HeadC>
-          <HairC
-            size={avatar.hair.size}
-            top={avatar.hair.top}
-            left={avatar.hair.left}
-            type={avatar.hair.type}
-            sizeX={this.props.sizeX}
+            {/* head component */}
+            <Head type={avatar.head.type} color={avatar.head.color} />
+          </Pressable>
+        </HeadC>
+        <HairC
+          size={avatar.hair.size}
+          top={avatar.hair.top}
+          left={avatar.hair.left}
+          type={avatar.hair.type}
+          sizeX={this.props.sizeX}
+        >
+          <Pressable
+            onPress={() => {
+              onPressFunction('hair');
+            }}
           >
-            <Pressable
-              onPress={() => {
-                onPressFunction('hair');
-              }}
-            >
-              <Hair type={avatar.hair.type} color={avatar.hair.color} />
-            </Pressable>
-          </HairC>
-          <NoseC
-            size={avatar.nose.size}
-            sizeX={this.props.sizeX}
-            top={avatar.nose.top}
-            left={avatar.nose.left}
-            type={avatar.nose.type}
+            <Hair type={avatar.hair.type} color={avatar.hair.color} />
+          </Pressable>
+        </HairC>
+        <NoseC
+          size={avatar.nose.size}
+          sizeX={this.props.sizeX}
+          top={avatar.nose.top}
+          left={avatar.nose.left}
+          type={avatar.nose.type}
+        >
+          <Pressable
+            onPress={() => {
+              onPressFunction('nose');
+            }}
           >
-            <Pressable
-              onPress={() => {
-                onPressFunction('nose');
-              }}
-            >
-              <Nose type={avatar.nose.type} />
-            </Pressable>
-          </NoseC>
-          <EyeL
-            size={avatar.eyeL.size}
-            sizeX={this.props.sizeX}
-            top={avatar.eyeL.top}
-            left={avatar.eyeL.left}
-            type={avatar.eyeL.type}
+            <Nose type={avatar.nose.type} />
+          </Pressable>
+        </NoseC>
+        <EyeL
+          size={avatar.eyeL.size}
+          sizeX={this.props.sizeX}
+          top={avatar.eyeL.top}
+          left={avatar.eyeL.left}
+          type={avatar.eyeL.type}
+        >
+          <Pressable
+            onPress={() => {
+              onPressFunction('eyeL');
+            }}
           >
-            <Pressable
-              onPress={() => {
-                onPressFunction('eyeL');
-              }}
-            >
-              <Eye type={avatar.eyeL.type} />
-            </Pressable>
-          </EyeL>
-          <EyeR
-            size={avatar.eyeR.size}
-            sizeX={this.props.sizeX}
-            top={avatar.eyeR.top}
-            left={avatar.eyeR.left}
-            type={avatar.eyeR.type}
+            <Eye type={avatar.eyeL.type} />
+          </Pressable>
+        </EyeL>
+        <EyeR
+          size={avatar.eyeR.size}
+          sizeX={this.props.sizeX}
+          top={avatar.eyeR.top}
+          left={avatar.eyeR.left}
+          type={avatar.eyeR.type}
+        >
+          <Pressable
+            onPress={() => {
+              onPressFunction('eyeR');
+            }}
           >
-            <Pressable
-              onPress={() => {
-                onPressFunction('eyeR');
-              }}
-            >
-              <Eye type={avatar.eyeR.type} />
-            </Pressable>
-          </EyeR>
-          <MouthC
-            size={avatar.mouth.size}
-            sizeX={this.props.sizeX}
-            top={avatar.mouth.top}
-            left={avatar.mouth.left}
-            type={avatar.mouth.type}
+            <Eye type={avatar.eyeR.type} />
+          </Pressable>
+        </EyeR>
+        <MouthC
+          size={avatar.mouth.size}
+          sizeX={this.props.sizeX}
+          top={avatar.mouth.top}
+          left={avatar.mouth.left}
+          type={avatar.mouth.type}
+        >
+          <Pressable
+            onPress={() => {
+              onPressFunction('mouth');
+            }}
           >
-            <Pressable
-              onPress={() => {
-                onPressFunction('mouth');
-              }}
-            >
-              <Mouth type={avatar.mouth.type} />
-            </Pressable>
-          </MouthC>
-          <EarC
-            size={avatar.ear.size}
-            sizeX={this.props.sizeX}
-            top={avatar.ear.top}
-            left={avatar.ear.left}
-            type={avatar.ear.type}
+            <Mouth type={avatar.mouth.type} />
+          </Pressable>
+        </MouthC>
+        <EarC
+          size={avatar.ear.size}
+          sizeX={this.props.sizeX}
+          top={avatar.ear.top}
+          left={avatar.ear.left}
+          type={avatar.ear.type}
+        >
+          <Pressable
+            onPress={() => {
+              onPressFunction('ear');
+            }}
           >
-            <Pressable
-              onPress={() => {
-                onPressFunction('ear');
-              }}
-            >
-              <Ear type={avatar.ear.type} />
-            </Pressable>
-          </EarC>
-        </AvatarC>
-      </>
+            <Ear type={avatar.ear.type} />
+          </Pressable>
+        </EarC>
+      </AvatarC>
     );
   }
 }

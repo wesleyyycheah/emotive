@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { Component } from 'react';
+import styled from 'styled-components/native';
 import Avatar from './Avatar';
+import { Dimensions, Animated } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 //type definitions
 type avatarKey = 'hair' | 'head' | 'ear' | 'eyeL' | 'eyeR' | 'nose' | 'mouth';
@@ -19,6 +22,8 @@ type CreatorState = {
     };
   };
   sizeX: number;
+  editorPage: number;
+  editorToggle: boolean;
 };
 
 type CreatorProps = {};
@@ -33,6 +38,67 @@ const partsList: listType = {
   nose: 8,
   mouth: 9,
 };
+const EditorC = styled.View`
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+const Editor = styled.View<{ toggle: boolean }>`
+  flex: ${(props) => (props.toggle ? 10 : 1)};
+  height: ${Dimensions.get('window').height * 0.2}px;
+  width: ${Dimensions.get('window').width}px;
+  background: #ececec;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+`;
+
+const EHeader = styled.View`
+  flex: 1;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  flex-direction: row;
+`;
+
+const EHToggle = styled.Pressable<{ toggle: boolean }>`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(${(props) => (props.toggle ? '0deg' : '180deg')});
+`;
+const EHTabs = styled.ScrollView`
+  flex: 5;
+  background: #c4c4c4;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 25px;
+  overflow: scroll;
+  flex-wrap: nowrap;
+  flex-direction: row;
+`;
+const EHTab = styled.View<{ active: boolean }>`
+  background: ${(props) => (props.active ? '#ececec' : '#DCDADA')};
+  width: 80px;
+  height: ${(props) => (props.active ? '95%' : '90%')};
+  margin-top: auto;
+  margin-right: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+`;
+const EContent = styled.ScrollView<{ toggle: boolean }>`
+  flex: ${(props) => (props.toggle ? 5 : 0)};
+`;
+
+const AvatarEC = styled.View`
+  flex: 10;
+  justify-content: center;
+  align-items: center;
+`;
 
 class AvatarCreator extends Component<CreatorProps, CreatorState> {
   constructor(props: CreatorProps) {
@@ -48,9 +114,10 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
         mouth: { type: 0, size: 20, top: 65, left: 30 },
       },
       sizeX: 3,
+      editorPage: 0,
+      editorToggle: true,
     };
   }
-
   onPressFunction(part: avatarKey): null {
     //make a copy of avatar
     let avatar = this.state.avatar;
@@ -62,16 +129,45 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     return null;
   }
 
+  editorToggle(): void {
+    const { editorToggle } = this.state;
+    this.setState({ editorToggle: !editorToggle });
+  }
+
   render() {
-    let { avatar, sizeX } = this.state;
+    let { avatar, sizeX, editorToggle } = this.state;
     return (
-      <>
-        <Avatar
-          avatar={avatar}
-          onPressFunction={this.onPressFunction.bind(this)}
-          sizeX={sizeX}
-        />
-      </>
+      <EditorC>
+        <AvatarEC>
+          <Avatar
+            avatar={avatar}
+            onPressFunction={this.onPressFunction.bind(this)}
+            sizeX={sizeX}
+          />
+        </AvatarEC>
+        <Editor toggle={editorToggle}>
+          <EHeader>
+            <EHToggle
+              toggle={editorToggle}
+              onPress={this.editorToggle.bind(this)}
+            >
+              <AntDesign name="downcircle" size={35} color="#c4c4c4" />
+            </EHToggle>
+            <EHTabs horizontal={true}>
+              <EHTab active={false} />
+              <EHTab active={false} />
+              <EHTab active={true} />
+              <EHTab active={false} />
+              <EHTab active={false} />
+              <EHTab active={false} />
+              <EHTab active={false} />
+              <EHTab active={false} />
+              <EHTab active={false} />
+            </EHTabs>
+          </EHeader>
+          <EContent toggle={editorToggle}></EContent>
+        </Editor>
+      </EditorC>
     );
   }
 }
