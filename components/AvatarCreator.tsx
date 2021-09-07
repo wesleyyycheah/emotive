@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component } from 'react';
 import styled from 'styled-components/native';
 import Avatar from './Avatar';
-import { Dimensions, Animated } from 'react-native';
+import { Dimensions } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import Head from './AvatarParts/Head';
 import Hair from './AvatarParts/Hair';
@@ -17,25 +17,6 @@ type listType = {
   [key in avatarKey]: number;
 };
 
-type CreatorState = {
-  avatar: {
-    [key in avatarKey]: {
-      color?: string;
-      type: number;
-      size: number;
-      top: number;
-      left: number;
-    };
-  };
-  sizeX: number;
-  editorPage: number;
-  editorToggle: boolean;
-  editorPart: avatarKey;
-  parts: Array<JSX.Element>;
-};
-
-type CreatorProps = {};
-
 //list of number of types for each part
 const partsList: listType = {
   hair: 3,
@@ -46,6 +27,8 @@ const partsList: listType = {
   nose: 8,
   mouth: 9,
 };
+
+//Styled Components
 const EditorC = styled.View`
   justify-content: center;
   flex-wrap: wrap;
@@ -122,6 +105,24 @@ const AvatarEC = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+type CreatorState = {
+  avatar: {
+    [key in avatarKey]: {
+      color?: string;
+      type: number;
+      size: number;
+      top: number;
+      left: number;
+    };
+  };
+  sizeX: number;
+  editorPage: number;
+  editorToggle: boolean;
+  editorPart: avatarKey;
+  parts: Array<JSX.Element>;
+};
+type CreatorProps = {};
 
 class AvatarCreator extends Component<CreatorProps, CreatorState> {
   constructor(props: CreatorProps) {
