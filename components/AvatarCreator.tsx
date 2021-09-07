@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
+import { Text } from 'react-native-svg';
 import styled from 'styled-components/native';
 import Avatar from './Avatar';
 import { Dimensions } from 'react-native';
@@ -10,6 +11,7 @@ import Eye from './AvatarParts/Eye';
 import Nose from './AvatarParts/Nose';
 import Mouth from './AvatarParts/Mouth';
 import Ear from './AvatarParts/Ear';
+import { API_KEY } from '@env';
 
 //type definitions
 type avatarKey = 'hair' | 'head' | 'ear' | 'eyeL' | 'eyeR' | 'nose' | 'mouth';
@@ -91,7 +93,7 @@ const EContent = styled.View<{ toggle: boolean }>`
   padding: 5px;
 `;
 
-const ECPart = styled.Pressable<{ id: number }>`
+const ECPart = styled.Pressable<{ key: number }>`
   width: 80px;
   height: 80px;
   padding: 5px;
@@ -146,6 +148,17 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     this.editorPartSelect = this.editorPartSelect.bind(this);
     this.editorToggle = this.editorToggle.bind(this);
   }
+  componentDidMount() {
+    let parts = [];
+    for (let i = 0; i < partsList['head']; i++) {
+      parts.push(
+        <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
+          <Head type={i} />
+        </ECPart>,
+      );
+    }
+    this.setState({ parts: parts });
+  }
   onPressFunction(part: avatarKey): null {
     //make a copy of avatar
     let avatar = this.state.avatar;
@@ -174,7 +187,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     if (part === 'hair') {
       for (let i = 0; i < partsList[part]; i++) {
         parts.push(
-          <ECPart id={i} onPress={() => this.editorPartIDSelect(i)}>
+          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
             <Hair type={i} color={'#000'} />
           </ECPart>,
         );
@@ -182,7 +195,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     } else if (part === 'head') {
       for (let i = 0; i < partsList[part]; i++) {
         parts.push(
-          <ECPart id={i} onPress={() => this.editorPartIDSelect(i)}>
+          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
             <Head type={i} color={'#000'} />
           </ECPart>,
         );
@@ -190,7 +203,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     } else if (part === 'eyeL' || part === 'eyeR') {
       for (let i = 0; i < partsList[part]; i++) {
         parts.push(
-          <ECPart id={i} onPress={() => this.editorPartIDSelect(i)}>
+          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
             <Eye type={i} />
           </ECPart>,
         );
@@ -198,7 +211,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     } else if (part === 'nose') {
       for (let i = 0; i < partsList[part]; i++) {
         parts.push(
-          <ECPart id={i} onPress={() => this.editorPartIDSelect(i)}>
+          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
             <Nose type={i} />
           </ECPart>,
         );
@@ -206,7 +219,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     } else if (part === 'mouth') {
       for (let i = 0; i < partsList[part]; i++) {
         parts.push(
-          <ECPart id={i} onPress={() => this.editorPartIDSelect(i)}>
+          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
             <Mouth type={i} />
           </ECPart>,
         );
@@ -214,7 +227,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     } else if (part === 'ear') {
       for (let i = 0; i < partsList[part]; i++) {
         parts.push(
-          <ECPart id={i} onPress={() => this.editorPartIDSelect(i)}>
+          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
             <Ear type={i} />
           </ECPart>,
         );
