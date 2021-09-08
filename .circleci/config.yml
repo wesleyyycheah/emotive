@@ -8,7 +8,7 @@ publish: &publish
 
     - run:
         name: Writing dotenv file
-        command: echo "API='${API_URL}'" >> .env
+        command: echo "API=${API_URL}" >> .env
 
     - run:
         name: Installing dependencies
