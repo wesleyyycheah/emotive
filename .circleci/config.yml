@@ -7,21 +7,18 @@ workflows:
   version: 2
   deploy:
     jobs:
-      - webDeploy:
+      - publish:
           filters:
             branches:
               only:
                 - main
 jobs:
-  webDeploy:
+  publish:
     executor: node-executor
     steps:
       - checkout
       - run: npm install
       - run:
-          command: |
-            git config user.email $EMAIL
-            git config user.name $NAME
-      - run: npm run webBuild
-      - run: npm run addDomain
-      - run: yarn deploy
+          command: npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
+      - run:
+          command: npx expo publish --non-interactive --max-workers 1 -- release-channel $EXPO_RELEASE_CHANNEL

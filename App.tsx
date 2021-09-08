@@ -1,17 +1,33 @@
+import * as React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  useFonts,
+  Comfortaa_300Light,
+  Comfortaa_500Medium,
+} from '@expo-google-fonts/comfortaa';
+import { Satisfy_400Regular } from '@expo-google-fonts/satisfy';
+import AppLoading from 'expo-app-loading';
+import AvatarCreator from './components/AvatarCreator';
+import { API } from '@env';
 
 export default function App() {
-  const logo = require('./assets/adaptive-icon.png');
-  return (
-    <View style={styles.container}>
-      <img src={logo} height={'10%'} />
-      <Text>Emotive will be available within the next year!</Text>
-      <Text>Stay tuned for our open beta program</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  let [fontsLoaded] = useFonts({
+    Comfortaa_300Light,
+    Comfortaa_500Medium,
+    Satisfy_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <View style={styles.container}>
+        <AvatarCreator />
+        <StatusBar style="auto" />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
