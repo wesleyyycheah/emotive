@@ -21,4 +21,4 @@ jobs:
       - run:
           command: npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
       - run:
-          command: npx expo publish --non-interactive --max-workers 1 -- release-channel $EXPO_RELEASE_CHANNEL
+          command: npx expo publish --non-interactive --max-workers 1
