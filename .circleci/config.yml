@@ -1,6 +1,6 @@
 version: 2.1
 publish: &publish
-  working_directory: ~/my-app
+  working_directory: ~/emotive
   docker:
     - image: circleci/node:14
   steps:
