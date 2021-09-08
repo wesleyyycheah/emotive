@@ -153,7 +153,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     for (let i = 0; i < partsList['head']; i++) {
       parts.push(
         <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-          <Head type={i} />
+          <Head type={i} color={'#000'} />
         </ECPart>,
       );
     }
@@ -204,7 +204,6 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     avatar[this.state.editorPart].type = id;
     this.setState({ avatar: avatar });
     this.updateAvatar(avatar);
-    this.getUserAvatar();
   }
 
   editorPartSelect(part: avatarKey) {
