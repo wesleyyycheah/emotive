@@ -5,14 +5,14 @@ import styled from 'styled-components/native';
 import Avatar from './Avatar';
 import { Dimensions } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import axios from 'axios';
 import Head from './AvatarParts/Head';
 import Hair from './AvatarParts/Hair';
 import Eye from './AvatarParts/Eye';
 import Nose from './AvatarParts/Nose';
 import Mouth from './AvatarParts/Mouth';
 import Ear from './AvatarParts/Ear';
-import { API_KEY } from '@env';
-
+import { API } from '@env';
 //type definitions
 type avatarKey = 'hair' | 'head' | 'ear' | 'eyeL' | 'eyeR' | 'nose' | 'mouth';
 type listType = {
@@ -107,17 +107,17 @@ const AvatarEC = styled.View`
   justify-content: center;
   align-items: center;
 `;
-
-type CreatorState = {
-  avatar: {
-    [key in avatarKey]: {
-      color?: string;
-      type: number;
-      size: number;
-      top: number;
-      left: number;
-    };
+type AvatarType = {
+  [key in avatarKey]: {
+    color?: string;
+    type: number;
+    size: number;
+    top: number;
+    left: number;
   };
+};
+type CreatorState = {
+  avatar: AvatarType;
   sizeX: number;
   editorPage: number;
   editorToggle: boolean;
@@ -158,6 +158,30 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
       );
     }
     this.setState({ parts: parts });
+    this.getUserAvatar();
+  }
+  async getUserAvatar() {
+    await axios
+      .request<AvatarType>({
+        method: 'post',
+        url: API + 'user/avatar/get',
+        data: {
+          _id: '61279f057e518a766eb14a5c',
+        },
+      })
+      .then((response) => {
+        this.setState({ avatar: response.data });
+      });
+  }
+  updateAvatar(avatar: AvatarType) {
+    axios({
+      method: 'post',
+      url: API + 'user/avatar/update',
+      data: {
+        _id: '61279f057e518a766eb14a5c',
+        avatar: avatar,
+      },
+    });
   }
   onPressFunction(part: avatarKey): null {
     //make a copy of avatar
@@ -179,6 +203,8 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     let { avatar } = this.state;
     avatar[this.state.editorPart].type = id;
     this.setState({ avatar: avatar });
+    this.updateAvatar(avatar);
+    this.getUserAvatar();
   }
 
   editorPartSelect(part: avatarKey) {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import {
   useFonts,
@@ -9,6 +9,7 @@ import {
 import { Satisfy_400Regular } from '@expo-google-fonts/satisfy';
 import AppLoading from 'expo-app-loading';
 import AvatarCreator from './components/AvatarCreator';
+import { API } from '@env';
 
 export default function App() {
   let [fontsLoaded] = useFonts({

@@ -3,6 +3,7 @@
   "homepage": "http://emotiv.app",
   "scripts": {
     "start": "expo start",
+    "start:production": "NODE_ENV=production expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
