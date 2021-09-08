@@ -7,6 +7,10 @@ publish: &publish
     - checkout
 
     - run:
+        name: Writing dotenv file
+        command: echo "API='${API_URL}'" >> .env
+
+    - run:
         name: Installing dependencies
         command: npm ci
 
