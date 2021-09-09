@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Text } from 'react-native-svg';
 import styled from 'styled-components/native';
 import Avatar from './Avatar';
 import { Dimensions } from 'react-native';
@@ -13,6 +12,7 @@ import Nose from './AvatarParts/Nose';
 import Mouth from './AvatarParts/Mouth';
 import Ear from './AvatarParts/Ear';
 import { API } from '@env';
+import AvatarPartEditor from './AvatarPartEditor';
 //type definitions
 type avatarKey = 'hair' | 'head' | 'ear' | 'eyeL' | 'eyeR' | 'nose' | 'mouth';
 type listType = {
@@ -330,7 +330,10 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
               </EHTab>
             </EHTabs>
           </EHeader>
-          <EContent toggle={editorToggle}>{parts}</EContent>
+          <EContent toggle={editorToggle}>
+            <AvatarPartEditor />
+            {/* {parts} */}
+          </EContent>
         </Editor>
       </EditorC>
     );
