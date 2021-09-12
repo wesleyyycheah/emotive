@@ -87,7 +87,7 @@ const EHTab = styled.Pressable<{ id: string; active: boolean }>`
 const EContent = styled.View<{ toggle: boolean }>`
   flex: ${(props) => (props.toggle ? 5 : 0)};
   flex-direction: row;
-  flex-wrap: wrap;
+  overflow: hidden;
   justify-content: center;
   align-items: center;
   padding: 5px;
@@ -147,6 +147,9 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     };
     this.editorPartSelect = this.editorPartSelect.bind(this);
     this.editorToggle = this.editorToggle.bind(this);
+    this.changeSize = this.changeSize.bind(this);
+    this.changeX = this.changeX.bind(this);
+    this.changeY = this.changeY.bind(this);
   }
   componentDidMount() {
     let parts = [];
@@ -262,6 +265,24 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     this.setState({ editorPart: part, parts: parts });
   }
 
+  changeSize(s: number) {
+    let { avatar, editorPart } = this.state;
+    avatar[editorPart].size += s;
+    avatar[editorPart].left -= s;
+    avatar[editorPart].top -= s;
+    this.setState({ avatar: avatar });
+  }
+  changeX(x: number) {
+    let { avatar, editorPart } = this.state;
+    avatar[editorPart].left += x;
+    this.setState({ avatar: avatar });
+  }
+  changeY(y: number) {
+    let { avatar, editorPart } = this.state;
+    avatar[editorPart].top += y;
+    this.setState({ avatar: avatar });
+  }
+
   render() {
     let { avatar, sizeX, editorToggle, editorPart, parts } = this.state;
     return (
@@ -331,7 +352,11 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
             </EHTabs>
           </EHeader>
           <EContent toggle={editorToggle}>
-            <AvatarPartEditor />
+            <AvatarPartEditor
+              changeX={this.changeX}
+              changeY={this.changeY}
+              changeSize={this.changeSize}
+            />
             {/* {parts} */}
           </EContent>
         </Editor>
