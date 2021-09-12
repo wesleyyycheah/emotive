@@ -55,11 +55,14 @@ const EHeader = styled.View`
   flex-direction: row;
 `;
 
-const EHToggle = styled.Pressable<{ toggle: boolean }>`
+const EHToggle = styled.Pressable<{ toggle: boolean; page: number }>`
   flex: 1;
   justify-content: center;
   align-items: center;
-  transform: rotate(${(props) => (props.toggle ? '0deg' : '180deg')});
+  transform: rotate(
+    ${(props) =>
+      props.toggle ? (props.page === 0 ? '0deg' : '90deg') : '180deg'}
+  );
 `;
 const EHTabs = styled.ScrollView`
   flex: 5;
@@ -211,7 +214,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     if (editorPage === 0) {
       this.setState({ editorToggle: !editorToggle });
     } else {
-      this.setState({ editorPage: 0 });
+      this.setState({ editorPage: editorPage - 1 });
     }
   }
 
@@ -223,59 +226,61 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
   }
 
   editorPartSelect(part: avatarKey) {
-    let parts = [];
+    if (this.state.editorPart !== part) {
+      let parts = [];
 
-    if (part === 'hair') {
-      for (let i = 0; i < partsList[part]; i++) {
-        parts.push(
-          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-            <Hair type={i} color={'#000'} />
-          </ECPart>,
-        );
+      if (part === 'hair') {
+        for (let i = 0; i < partsList[part]; i++) {
+          parts.push(
+            <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
+              <Hair type={i} color={'#000'} />
+            </ECPart>,
+          );
+        }
+      } else if (part === 'head') {
+        for (let i = 0; i < partsList[part]; i++) {
+          parts.push(
+            <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
+              <Head type={i} color={'#000'} />
+            </ECPart>,
+          );
+        }
+      } else if (part === 'eyeL' || part === 'eyeR') {
+        for (let i = 0; i < partsList[part]; i++) {
+          parts.push(
+            <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
+              <Eye type={i} />
+            </ECPart>,
+          );
+        }
+      } else if (part === 'nose') {
+        for (let i = 0; i < partsList[part]; i++) {
+          parts.push(
+            <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
+              <Nose type={i} />
+            </ECPart>,
+          );
+        }
+      } else if (part === 'mouth') {
+        for (let i = 0; i < partsList[part]; i++) {
+          parts.push(
+            <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
+              <Mouth type={i} />
+            </ECPart>,
+          );
+        }
+      } else if (part === 'ear') {
+        for (let i = 0; i < partsList[part]; i++) {
+          parts.push(
+            <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
+              <Ear type={i} />
+            </ECPart>,
+          );
+        }
       }
-    } else if (part === 'head') {
-      for (let i = 0; i < partsList[part]; i++) {
-        parts.push(
-          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-            <Head type={i} color={'#000'} />
-          </ECPart>,
-        );
-      }
-    } else if (part === 'eyeL' || part === 'eyeR') {
-      for (let i = 0; i < partsList[part]; i++) {
-        parts.push(
-          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-            <Eye type={i} />
-          </ECPart>,
-        );
-      }
-    } else if (part === 'nose') {
-      for (let i = 0; i < partsList[part]; i++) {
-        parts.push(
-          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-            <Nose type={i} />
-          </ECPart>,
-        );
-      }
-    } else if (part === 'mouth') {
-      for (let i = 0; i < partsList[part]; i++) {
-        parts.push(
-          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-            <Mouth type={i} />
-          </ECPart>,
-        );
-      }
-    } else if (part === 'ear') {
-      for (let i = 0; i < partsList[part]; i++) {
-        parts.push(
-          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-            <Ear type={i} />
-          </ECPart>,
-        );
-      }
+
+      this.setState({ editorPart: part, parts: parts, editorPage: 0 });
     }
-
-    this.setState({ editorPart: part, parts: parts });
   }
 
   changeSize(s: number) {
@@ -315,7 +320,11 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
         </AvatarEC>
         <Editor toggle={editorToggle}>
           <EHeader>
-            <EHToggle toggle={editorToggle} onPress={this.editorToggle}>
+            <EHToggle
+              toggle={editorToggle}
+              page={editorPage}
+              onPress={this.editorToggle}
+            >
               <AntDesign name="downcircle" size={35} color="#c4c4c4" />
             </EHToggle>
             <EHTabs horizontal={true}>
