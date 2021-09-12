@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Text } from 'react-native-svg';
 import styled from 'styled-components/native';
 import Avatar from './Avatar';
 import { Dimensions } from 'react-native';
@@ -13,6 +12,7 @@ import Nose from './AvatarParts/Nose';
 import Mouth from './AvatarParts/Mouth';
 import Ear from './AvatarParts/Ear';
 import { API } from '@env';
+import AvatarPartEditor from './AvatarPartEditor';
 //type definitions
 type avatarKey = 'hair' | 'head' | 'ear' | 'eyeL' | 'eyeR' | 'nose' | 'mouth';
 type listType = {
@@ -55,11 +55,14 @@ const EHeader = styled.View`
   flex-direction: row;
 `;
 
-const EHToggle = styled.Pressable<{ toggle: boolean }>`
+const EHToggle = styled.Pressable<{ toggle: boolean; page: number }>`
   flex: 1;
   justify-content: center;
   align-items: center;
-  transform: rotate(${(props) => (props.toggle ? '0deg' : '180deg')});
+  transform: rotate(
+    ${(props) =>
+      props.toggle ? (props.page === 0 ? '0deg' : '90deg') : '180deg'}
+  );
 `;
 const EHTabs = styled.ScrollView`
   flex: 5;
@@ -87,10 +90,17 @@ const EHTab = styled.Pressable<{ id: string; active: boolean }>`
 const EContent = styled.View<{ toggle: boolean }>`
   flex: ${(props) => (props.toggle ? 5 : 0)};
   flex-direction: row;
-  flex-wrap: wrap;
+  overflow: hidden;
   justify-content: center;
   align-items: center;
   padding: 5px;
+`;
+const EPartsC = styled.ScrollView<{}>`
+  flex-direction: column;
+  padding: 5px;
+`;
+const EPartsCR = styled.View<{}>`
+  flex-direction: row;
 `;
 
 const ECPart = styled.Pressable<{ key: number }>`
@@ -114,6 +124,7 @@ type AvatarType = {
     size: number;
     top: number;
     left: number;
+    rot: number;
   };
 };
 type CreatorState = {
@@ -131,13 +142,20 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     super(props);
     this.state = {
       avatar: {
-        hair: { color: '#291600', type: 1, size: 85, top: -17, left: 5 },
-        head: { color: '#e6c9a1', type: 5, size: 100, top: 0, left: 0 },
-        ear: { type: 1, size: 30, top: 35, left: 60 },
-        eyeL: { type: 0, size: 20, top: 35, left: 15 },
-        eyeR: { type: 0, size: 20, top: 35, left: 37 },
-        nose: { type: 0, size: 20, top: 50, left: 25 },
-        mouth: { type: 0, size: 20, top: 65, left: 30 },
+        hair: {
+          color: '#291600',
+          type: 1,
+          size: 85,
+          top: -17,
+          left: 5,
+          rot: 0,
+        },
+        head: { color: '#e6c9a1', type: 5, size: 100, top: 0, left: 0, rot: 0 },
+        ear: { type: 1, size: 30, top: 35, left: 60, rot: 0 },
+        eyeL: { type: 0, size: 20, top: 35, left: 15, rot: 0 },
+        eyeR: { type: 0, size: 20, top: 35, left: 37, rot: 0 },
+        nose: { type: 0, size: 20, top: 50, left: 25, rot: 0 },
+        mouth: { type: 0, size: 20, top: 65, left: 30, rot: 0 },
       },
       sizeX: 3,
       editorPage: 0,
@@ -147,15 +165,24 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     };
     this.editorPartSelect = this.editorPartSelect.bind(this);
     this.editorToggle = this.editorToggle.bind(this);
+    this.changeSize = this.changeSize.bind(this);
+    this.changeX = this.changeX.bind(this);
+    this.changeY = this.changeY.bind(this);
+    this.changeRot = this.changeRot.bind(this);
   }
   componentDidMount() {
     let parts = [];
-    for (let i = 0; i < partsList['head']; i++) {
-      parts.push(
-        <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-          <Head type={i} color={'#000'} />
-        </ECPart>,
-      );
+    const n = Math.round(Dimensions.get('window').width / 100);
+    for (let i = 0; i < partsList['head']; i += n) {
+      let x = [];
+      for (let j = i; j < i + n && j < partsList['head']; j++) {
+        x.push(
+          <ECPart key={j} onPress={() => this.editorPartIDSelect(j)}>
+            <Head type={j} color={'#000'} />
+          </ECPart>,
+        );
+      }
+      parts.push(<EPartsCR>{x}</EPartsCR>);
     }
     this.setState({ parts: parts });
     this.getUserAvatar();
@@ -195,75 +222,128 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
   }
 
   editorToggle(): void {
-    const { editorToggle } = this.state;
-    this.setState({ editorToggle: !editorToggle });
+    const { editorToggle, editorPage } = this.state;
+    if (editorPage === 0) {
+      this.setState({ editorToggle: !editorToggle });
+    } else {
+      this.setState({ editorPage: editorPage - 1 });
+    }
   }
 
   editorPartIDSelect(id: number): void {
     let { avatar } = this.state;
     avatar[this.state.editorPart].type = id;
-    this.setState({ avatar: avatar });
+    this.setState({ avatar: avatar, editorPage: 1 });
     this.updateAvatar(avatar);
   }
 
   editorPartSelect(part: avatarKey) {
-    let parts = [];
-
-    if (part === 'hair') {
-      for (let i = 0; i < partsList[part]; i++) {
-        parts.push(
-          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-            <Hair type={i} color={'#000'} />
-          </ECPart>,
-        );
+    if (this.state.editorPart !== part) {
+      const n = Math.round(Dimensions.get('window').width / 100);
+      let parts = [];
+      if (part === 'hair') {
+        for (let i = 0; i < partsList[part]; i += n) {
+          let x = [];
+          for (let j = i; j < i + n && j < partsList[part]; j++) {
+            x.push(
+              <ECPart key={j} onPress={() => this.editorPartIDSelect(j)}>
+                <Hair type={j} color={'#000'} />
+              </ECPart>,
+            );
+          }
+          parts.push(<EPartsCR>{x}</EPartsCR>);
+        }
+      } else if (part === 'head') {
+        for (let i = 0; i < partsList[part]; i += n) {
+          let x = [];
+          for (let j = i; j < i + n && j < partsList[part]; j++) {
+            x.push(
+              <ECPart key={j} onPress={() => this.editorPartIDSelect(j)}>
+                <Head type={j} color={'#000'} />
+              </ECPart>,
+            );
+          }
+          parts.push(<EPartsCR>{x}</EPartsCR>);
+        }
+      } else if (part === 'eyeL' || part === 'eyeR') {
+        for (let i = 0; i < partsList[part]; i += n) {
+          let x = [];
+          for (let j = i; j < i + n && j < partsList[part]; j++) {
+            x.push(
+              <ECPart key={j} onPress={() => this.editorPartIDSelect(j)}>
+                <Eye type={j} color={'#000'} />
+              </ECPart>,
+            );
+          }
+          parts.push(<EPartsCR>{x}</EPartsCR>);
+        }
+      } else if (part === 'nose') {
+        for (let i = 0; i < partsList[part]; i += n) {
+          let x = [];
+          for (let j = i; j < i + n && j < partsList[part]; j++) {
+            x.push(
+              <ECPart key={j} onPress={() => this.editorPartIDSelect(j)}>
+                <Nose type={j} color={'#000'} />
+              </ECPart>,
+            );
+          }
+          parts.push(<EPartsCR>{x}</EPartsCR>);
+        }
+      } else if (part === 'mouth') {
+        for (let i = 0; i < partsList[part]; i += n) {
+          let x = [];
+          for (let j = i; j < i + n && j < partsList[part]; j++) {
+            x.push(
+              <ECPart key={j} onPress={() => this.editorPartIDSelect(j)}>
+                <Mouth type={j} color={'#000'} />
+              </ECPart>,
+            );
+          }
+          parts.push(<EPartsCR>{x}</EPartsCR>);
+        }
+      } else if (part === 'ear') {
+        for (let i = 0; i < partsList[part]; i += n) {
+          let x = [];
+          for (let j = i; j < i + n && j < partsList[part]; j++) {
+            x.push(
+              <ECPart key={j} onPress={() => this.editorPartIDSelect(j)}>
+                <Ear type={j} color={'#000'} />
+              </ECPart>,
+            );
+          }
+          parts.push(<EPartsCR>{x}</EPartsCR>);
+        }
       }
-    } else if (part === 'head') {
-      for (let i = 0; i < partsList[part]; i++) {
-        parts.push(
-          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-            <Head type={i} color={'#000'} />
-          </ECPart>,
-        );
-      }
-    } else if (part === 'eyeL' || part === 'eyeR') {
-      for (let i = 0; i < partsList[part]; i++) {
-        parts.push(
-          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-            <Eye type={i} />
-          </ECPart>,
-        );
-      }
-    } else if (part === 'nose') {
-      for (let i = 0; i < partsList[part]; i++) {
-        parts.push(
-          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-            <Nose type={i} />
-          </ECPart>,
-        );
-      }
-    } else if (part === 'mouth') {
-      for (let i = 0; i < partsList[part]; i++) {
-        parts.push(
-          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-            <Mouth type={i} />
-          </ECPart>,
-        );
-      }
-    } else if (part === 'ear') {
-      for (let i = 0; i < partsList[part]; i++) {
-        parts.push(
-          <ECPart key={i} onPress={() => this.editorPartIDSelect(i)}>
-            <Ear type={i} />
-          </ECPart>,
-        );
-      }
+      this.setState({ editorPart: part, parts: parts, editorPage: 0 });
     }
+  }
 
-    this.setState({ editorPart: part, parts: parts });
+  changeSize(s: number) {
+    let { avatar, editorPart } = this.state;
+    avatar[editorPart].size += s;
+    avatar[editorPart].left -= s;
+    avatar[editorPart].top -= s;
+    this.setState({ avatar: avatar });
+  }
+  changeX(x: number) {
+    let { avatar, editorPart } = this.state;
+    avatar[editorPart].left += x;
+    this.setState({ avatar: avatar });
+  }
+  changeY(y: number) {
+    let { avatar, editorPart } = this.state;
+    avatar[editorPart].top += y;
+    this.setState({ avatar: avatar });
+  }
+  changeRot(d: number) {
+    let { avatar, editorPart } = this.state;
+    avatar[editorPart].rot += d;
+    this.setState({ avatar: avatar });
   }
 
   render() {
-    let { avatar, sizeX, editorToggle, editorPart, parts } = this.state;
+    let { avatar, sizeX, editorToggle, editorPart, parts, editorPage } =
+      this.state;
     return (
       <EditorC>
         <AvatarEC>
@@ -275,7 +355,11 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
         </AvatarEC>
         <Editor toggle={editorToggle}>
           <EHeader>
-            <EHToggle toggle={editorToggle} onPress={this.editorToggle}>
+            <EHToggle
+              toggle={editorToggle}
+              page={editorPage}
+              onPress={this.editorToggle}
+            >
               <AntDesign name="downcircle" size={35} color="#c4c4c4" />
             </EHToggle>
             <EHTabs horizontal={true}>
@@ -330,7 +414,18 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
               </EHTab>
             </EHTabs>
           </EHeader>
-          <EContent toggle={editorToggle}>{parts}</EContent>
+          <EContent toggle={editorToggle}>
+            {editorPage === 0 ? (
+              <EPartsC>{parts}</EPartsC>
+            ) : (
+              <AvatarPartEditor
+                changeX={this.changeX}
+                changeY={this.changeY}
+                changeSize={this.changeSize}
+                changeRot={this.changeRot}
+              />
+            )}
+          </EContent>
         </Editor>
       </EditorC>
     );

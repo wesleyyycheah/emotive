@@ -21,6 +21,7 @@ interface StyledProps {
   top: number;
   type: number;
   sizeX: number;
+  rot: number;
 }
 //state expected for Avatar component
 type AvatarState = {
@@ -36,6 +37,7 @@ type AvatarProps = {
       size: number;
       top: number;
       left: number;
+      rot: number;
     };
   };
   sizeX: number;
@@ -133,6 +135,7 @@ let NoseC = styled.View<StyledProps>`
     PixelRatio.roundToNearestPixel(
       (props.top + partsModifier.nose[props.type].top) * props.sizeX,
     )}px;
+  transform: rotate(${(props) => props.rot}deg);
 `;
 let EyeL = styled.View<StyledProps>`
   position: absolute;
@@ -152,6 +155,7 @@ let EyeL = styled.View<StyledProps>`
     PixelRatio.roundToNearestPixel(
       (props.top + partsModifier.eyeL[props.type].top) * props.sizeX,
     )}px;
+  transform: rotate(${(props) => props.rot}deg);
 `;
 let EyeR = styled.View<StyledProps>`
   position: absolute;
@@ -171,6 +175,7 @@ let EyeR = styled.View<StyledProps>`
     PixelRatio.roundToNearestPixel(
       (props.top + partsModifier.eyeR[props.type].top) * props.sizeX,
     )}px;
+  transform: rotate(${(props) => props.rot}deg);
 `;
 let HeadC = styled.View<StyledProps>`
   position: absolute;
@@ -190,6 +195,7 @@ let HeadC = styled.View<StyledProps>`
     PixelRatio.roundToNearestPixel(
       (props.top + partsModifier.head[props.type].top) * props.sizeX,
     )}px;
+  transform: rotate(${(props) => props.rot}deg);
 `;
 let MouthC = styled.View<StyledProps>`
   position: absolute;
@@ -209,6 +215,7 @@ let MouthC = styled.View<StyledProps>`
     PixelRatio.roundToNearestPixel(
       (props.top + partsModifier.mouth[props.type].top) * props.sizeX,
     )}px;
+  transform: rotate(${(props) => props.rot}deg);
 `;
 let EarC = styled.View<StyledProps>`
   position: absolute;
@@ -228,6 +235,7 @@ let EarC = styled.View<StyledProps>`
     PixelRatio.roundToNearestPixel(
       (props.top + partsModifier.ear[props.type].top) * props.sizeX,
     )}px;
+  transform: rotate(${(props) => props.rot}deg);
 `;
 let HairC = styled.View<StyledProps>`
   position: absolute;
@@ -247,6 +255,7 @@ let HairC = styled.View<StyledProps>`
     PixelRatio.roundToNearestPixel(
       (props.top + partsModifier.hair[props.type].top) * props.sizeX,
     )}px;
+  transform: rotate(${(props) => props.rot}deg);
 `;
 let AvatarC = styled.View<{ sizeX: number }>`
   top: ${(props) => PixelRatio.roundToNearestPixel(-50 * props.sizeX)}px;
@@ -273,6 +282,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           top={avatar.head.top}
           left={avatar.head.left}
           type={avatar.head.type}
+          rot={avatar.head.rot}
           sizeX={this.props.sizeX}
         >
           {/* container that makes a function run when it is tapped */}
@@ -291,6 +301,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           top={avatar.hair.top}
           left={avatar.hair.left}
           type={avatar.hair.type}
+          rot={avatar.hair.rot}
           sizeX={this.props.sizeX}
         >
           <Pressable
@@ -306,6 +317,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           sizeX={this.props.sizeX}
           top={avatar.nose.top}
           left={avatar.nose.left}
+          rot={avatar.nose.rot}
           type={avatar.nose.type}
         >
           <Pressable
@@ -321,6 +333,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           sizeX={this.props.sizeX}
           top={avatar.eyeL.top}
           left={avatar.eyeL.left}
+          rot={avatar.eyeL.rot}
           type={avatar.eyeL.type}
         >
           <Pressable
@@ -336,6 +349,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           sizeX={this.props.sizeX}
           top={avatar.eyeR.top}
           left={avatar.eyeR.left}
+          rot={avatar.eyeR.rot}
           type={avatar.eyeR.type}
         >
           <Pressable
@@ -351,6 +365,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           sizeX={this.props.sizeX}
           top={avatar.mouth.top}
           left={avatar.mouth.left}
+          rot={avatar.mouth.rot}
           type={avatar.mouth.type}
         >
           <Pressable
@@ -366,6 +381,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           sizeX={this.props.sizeX}
           top={avatar.ear.top}
           left={avatar.ear.left}
+          rot={avatar.ear.rot}
           type={avatar.ear.type}
         >
           <Pressable
