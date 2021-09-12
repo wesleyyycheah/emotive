@@ -114,6 +114,7 @@ type AvatarType = {
     size: number;
     top: number;
     left: number;
+    rot: number;
   };
 };
 type CreatorState = {
@@ -131,13 +132,20 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     super(props);
     this.state = {
       avatar: {
-        hair: { color: '#291600', type: 1, size: 85, top: -17, left: 5 },
-        head: { color: '#e6c9a1', type: 5, size: 100, top: 0, left: 0 },
-        ear: { type: 1, size: 30, top: 35, left: 60 },
-        eyeL: { type: 0, size: 20, top: 35, left: 15 },
-        eyeR: { type: 0, size: 20, top: 35, left: 37 },
-        nose: { type: 0, size: 20, top: 50, left: 25 },
-        mouth: { type: 0, size: 20, top: 65, left: 30 },
+        hair: {
+          color: '#291600',
+          type: 1,
+          size: 85,
+          top: -17,
+          left: 5,
+          rot: 0,
+        },
+        head: { color: '#e6c9a1', type: 5, size: 100, top: 0, left: 0, rot: 0 },
+        ear: { type: 1, size: 30, top: 35, left: 60, rot: 0 },
+        eyeL: { type: 0, size: 20, top: 35, left: 15, rot: 0 },
+        eyeR: { type: 0, size: 20, top: 35, left: 37, rot: 0 },
+        nose: { type: 0, size: 20, top: 50, left: 25, rot: 0 },
+        mouth: { type: 0, size: 20, top: 65, left: 30, rot: 0 },
       },
       sizeX: 3,
       editorPage: 0,
@@ -150,6 +158,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     this.changeSize = this.changeSize.bind(this);
     this.changeX = this.changeX.bind(this);
     this.changeY = this.changeY.bind(this);
+    this.changeRot = this.changeRot.bind(this);
   }
   componentDidMount() {
     let parts = [];
@@ -198,14 +207,18 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
   }
 
   editorToggle(): void {
-    const { editorToggle } = this.state;
-    this.setState({ editorToggle: !editorToggle });
+    const { editorToggle, editorPage } = this.state;
+    if (editorPage === 0) {
+      this.setState({ editorToggle: !editorToggle });
+    } else {
+      this.setState({ editorPage: 0 });
+    }
   }
 
   editorPartIDSelect(id: number): void {
     let { avatar } = this.state;
     avatar[this.state.editorPart].type = id;
-    this.setState({ avatar: avatar });
+    this.setState({ avatar: avatar, editorPage: 1 });
     this.updateAvatar(avatar);
   }
 
@@ -282,9 +295,15 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     avatar[editorPart].top += y;
     this.setState({ avatar: avatar });
   }
+  changeRot(d: number) {
+    let { avatar, editorPart } = this.state;
+    avatar[editorPart].rot += d;
+    this.setState({ avatar: avatar });
+  }
 
   render() {
-    let { avatar, sizeX, editorToggle, editorPart, parts } = this.state;
+    let { avatar, sizeX, editorToggle, editorPart, parts, editorPage } =
+      this.state;
     return (
       <EditorC>
         <AvatarEC>
@@ -352,12 +371,16 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
             </EHTabs>
           </EHeader>
           <EContent toggle={editorToggle}>
-            <AvatarPartEditor
-              changeX={this.changeX}
-              changeY={this.changeY}
-              changeSize={this.changeSize}
-            />
-            {/* {parts} */}
+            {editorPage === 0 ? (
+              parts
+            ) : (
+              <AvatarPartEditor
+                changeX={this.changeX}
+                changeY={this.changeY}
+                changeSize={this.changeSize}
+                changeRot={this.changeRot}
+              />
+            )}
           </EContent>
         </Editor>
       </EditorC>

@@ -5,7 +5,7 @@ interface PartEditorProps {
   changeSize: Function;
   changeX: Function;
   changeY: Function;
-  //   changeRot: Function;
+  changeRot: Function;
 }
 
 const PMover = styled.View<{}>`
@@ -71,7 +71,7 @@ const SizeDown = styled.Pressable<{}>`
 `;
 
 const AvatarPartEditor = (props: PartEditorProps) => {
-  const { changeY, changeX, changeSize } = props;
+  const { changeY, changeX, changeSize, changeRot } = props;
   return (
     <>
       <PMover>
@@ -90,8 +90,8 @@ const AvatarPartEditor = (props: PartEditorProps) => {
           <AntDesign name="caretleft" size={100} color="#c4c4c4" />
         </Down>
       </PMover>
-      <RotL />
-      <RotR />
+      <RotL onPress={() => changeRot(1)} />
+      <RotR onPress={() => changeRot(-1)} />
       <SizeUp onPress={() => changeSize(1)} />
       <SizeDown onPress={() => changeSize(-1)} />
     </>
