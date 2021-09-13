@@ -172,7 +172,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
   }
   componentDidMount() {
     let parts = [];
-    const n = Math.round(Dimensions.get('window').width / 100);
+    const n = Math.round(Dimensions.get('window').width / 110);
     for (let i = 0; i < partsList['head']; i += n) {
       let x = [];
       for (let j = i; j < i + n && j < partsList['head']; j++) {
@@ -210,16 +210,6 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
       },
     });
   }
-  onPressFunction(part: avatarKey): null {
-    //make a copy of avatar
-    let avatar = this.state.avatar;
-    //set the avatar part to it + 1 mod by the length of the parts so it doesn't run out
-    avatar[part].type = (avatar[part].type + 1) % partsList[part];
-    //set state of avatar to avatar copy
-    this.setState({ avatar: avatar });
-    //return nothing
-    return null;
-  }
 
   editorToggle(): void {
     const { editorToggle, editorPage } = this.state;
@@ -239,7 +229,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
 
   editorPartSelect(part: avatarKey) {
     if (this.state.editorPart !== part) {
-      const n = Math.round(Dimensions.get('window').width / 100);
+      const n = Math.round(Dimensions.get('window').width / 110);
       let parts = [];
       if (part === 'hair') {
         for (let i = 0; i < partsList[part]; i += n) {
@@ -315,6 +305,8 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
         }
       }
       this.setState({ editorPart: part, parts: parts, editorPage: 0 });
+    } else {
+      this.setState({ editorPage: 0 });
     }
   }
 
@@ -347,11 +339,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     return (
       <EditorC>
         <AvatarEC>
-          <Avatar
-            avatar={avatar}
-            onPressFunction={this.onPressFunction.bind(this)}
-            sizeX={sizeX}
-          />
+          <Avatar avatar={avatar} sizeX={sizeX} />
         </AvatarEC>
         <Editor toggle={editorToggle}>
           <EHeader>

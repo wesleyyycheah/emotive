@@ -41,7 +41,6 @@ type AvatarProps = {
     };
   };
   sizeX: number;
-  onPressFunction: Function;
 };
 
 //define strings that are keys for avatar object and partsModifier object
@@ -272,7 +271,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
 
   //JSX render code
   render() {
-    let { avatar, onPressFunction } = this.props;
+    let { avatar } = this.props;
     return (
       <AvatarC sizeX={this.props.sizeX}>
         {/* head container (styled component) */}
@@ -286,15 +285,9 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           sizeX={this.props.sizeX}
         >
           {/* container that makes a function run when it is tapped */}
-          <Pressable
-            // function to run when it is pressed
-            onPress={() => {
-              onPressFunction('head');
-            }}
-          >
-            {/* head component */}
-            <Head type={avatar.head.type} color={avatar.head.color} />
-          </Pressable>
+
+          {/* head component */}
+          <Head type={avatar.head.type} color={avatar.head.color} />
         </HeadC>
         <HairC
           size={avatar.hair.size}
@@ -304,13 +297,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           rot={avatar.hair.rot}
           sizeX={this.props.sizeX}
         >
-          <Pressable
-            onPress={() => {
-              onPressFunction('hair');
-            }}
-          >
-            <Hair type={avatar.hair.type} color={avatar.hair.color} />
-          </Pressable>
+          <Hair type={avatar.hair.type} color={avatar.hair.color} />
         </HairC>
         <NoseC
           size={avatar.nose.size}
@@ -320,13 +307,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           rot={avatar.nose.rot}
           type={avatar.nose.type}
         >
-          <Pressable
-            onPress={() => {
-              onPressFunction('nose');
-            }}
-          >
-            <Nose type={avatar.nose.type} />
-          </Pressable>
+          <Nose type={avatar.nose.type} />
         </NoseC>
         <EyeL
           size={avatar.eyeL.size}
@@ -336,13 +317,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           rot={avatar.eyeL.rot}
           type={avatar.eyeL.type}
         >
-          <Pressable
-            onPress={() => {
-              onPressFunction('eyeL');
-            }}
-          >
-            <Eye type={avatar.eyeL.type} />
-          </Pressable>
+          <Eye type={avatar.eyeL.type} />
         </EyeL>
         <EyeR
           size={avatar.eyeR.size}
@@ -352,13 +327,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           rot={avatar.eyeR.rot}
           type={avatar.eyeR.type}
         >
-          <Pressable
-            onPress={() => {
-              onPressFunction('eyeR');
-            }}
-          >
-            <Eye type={avatar.eyeR.type} />
-          </Pressable>
+          <Eye type={avatar.eyeR.type} />
         </EyeR>
         <MouthC
           size={avatar.mouth.size}
@@ -368,13 +337,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           rot={avatar.mouth.rot}
           type={avatar.mouth.type}
         >
-          <Pressable
-            onPress={() => {
-              onPressFunction('mouth');
-            }}
-          >
-            <Mouth type={avatar.mouth.type} />
-          </Pressable>
+          <Mouth type={avatar.mouth.type} />
         </MouthC>
         <EarC
           size={avatar.ear.size}
@@ -384,13 +347,7 @@ class Avatar extends Component<AvatarProps, AvatarState> {
           rot={avatar.ear.rot}
           type={avatar.ear.type}
         >
-          <Pressable
-            onPress={() => {
-              onPressFunction('ear');
-            }}
-          >
-            <Ear type={avatar.ear.type} />
-          </Pressable>
+          <Ear type={avatar.ear.type} />
         </EarC>
       </AvatarC>
     );
