@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons';
 interface PartEditorProps {
   changeSize: Function;
   changeX: Function;
@@ -35,6 +35,8 @@ const LR = styled.View`
 `;
 const RotL = styled.Pressable<{}>`
   background-color: #c4c4c4;
+  align-items: center;
+  justify-content: center;
   width: 100px;
   height: 100px;
   left: 0;
@@ -44,6 +46,8 @@ const RotL = styled.Pressable<{}>`
 `;
 const RotR = styled.Pressable<{}>`
   background-color: #c4c4c4;
+  align-items: center;
+  justify-content: center;
   width: 100px;
   height: 100px;
   right: 0;
@@ -53,6 +57,8 @@ const RotR = styled.Pressable<{}>`
 `;
 const SizeUp = styled.Pressable<{}>`
   background-color: #c4c4c4;
+  align-items: center;
+  justify-content: center;
   width: 100px;
   height: 100px;
   right: 0;
@@ -62,6 +68,8 @@ const SizeUp = styled.Pressable<{}>`
 `;
 const SizeDown = styled.Pressable<{}>`
   background-color: #c4c4c4;
+  align-items: center;
+  justify-content: center;
   width: 100px;
   height: 100px;
   left: 0;
@@ -90,10 +98,18 @@ const AvatarPartEditor = (props: PartEditorProps) => {
           <AntDesign name="caretleft" size={100} color="#c4c4c4" />
         </Down>
       </PMover>
-      <RotL onPress={() => changeRot(1)} />
-      <RotR onPress={() => changeRot(-1)} />
-      <SizeUp onPress={() => changeSize(1)} />
-      <SizeDown onPress={() => changeSize(-1)} />
+      <RotL onPress={() => changeRot(1)}>
+        <FontAwesome name="rotate-right" size={40} color="#ececec" />
+      </RotL>
+      <RotR onPress={() => changeRot(-1)}>
+        <FontAwesome name="rotate-left" size={40} color="#ececec" />
+      </RotR>
+      <SizeUp onPress={() => changeSize(1)}>
+        <Entypo name="resize-full-screen" size={40} color="#ececec" />
+      </SizeUp>
+      <SizeDown onPress={() => changeSize(-1)}>
+        <Entypo name="resize-100-" size={40} color="#ececec" />
+      </SizeDown>
     </>
   );
 };
