@@ -35,6 +35,12 @@ const EditorC = styled.View`
   justify-content: center;
   flex-wrap: wrap;
 `;
+const Container = styled.View`
+  flex: 1;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+`;
 const Editor = styled.View<{ toggle: boolean }>`
   flex: ${(props) => (props.toggle ? 10 : 1)};
   height: ${Dimensions.get('window').height * 0.2}px;
@@ -135,7 +141,7 @@ type CreatorState = {
   editorPart: avatarKey;
   parts: Array<JSX.Element>;
 };
-type CreatorProps = {};
+type CreatorProps = { userID: string; avatar: AvatarType };
 
 class AvatarCreator extends Component<CreatorProps, CreatorState> {
   constructor(props: CreatorProps) {
@@ -184,8 +190,8 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
       }
       parts.push(<EPartsCR>{x}</EPartsCR>);
     }
-    this.setState({ parts: parts });
-    this.getUserAvatar();
+    this.setState({ parts: parts, avatar: this.props.avatar });
+    //this.getUserAvatar();
   }
   async getUserAvatar() {
     await axios
@@ -193,7 +199,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
         method: 'post',
         url: API + 'user/avatar/get',
         data: {
-          _id: '61279f057e518a766eb14a5c',
+          _id: this.props.userID,
         },
       })
       .then((response) => {
@@ -205,7 +211,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
       method: 'post',
       url: API + 'user/avatar/update',
       data: {
-        _id: '61279f057e518a766eb14a5c',
+        _id: this.props.userID,
         avatar: avatar,
       },
     });
@@ -316,106 +322,112 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
     avatar[editorPart].left -= s;
     avatar[editorPart].top -= s;
     this.setState({ avatar: avatar });
+    this.updateAvatar(avatar);
   }
   changeX(x: number) {
     let { avatar, editorPart } = this.state;
     avatar[editorPart].left += x;
     this.setState({ avatar: avatar });
+    this.updateAvatar(avatar);
   }
   changeY(y: number) {
     let { avatar, editorPart } = this.state;
     avatar[editorPart].top += y;
     this.setState({ avatar: avatar });
+    this.updateAvatar(avatar);
   }
   changeRot(d: number) {
     let { avatar, editorPart } = this.state;
     avatar[editorPart].rot += d;
     this.setState({ avatar: avatar });
+    this.updateAvatar(avatar);
   }
 
   render() {
     let { avatar, sizeX, editorToggle, editorPart, parts, editorPage } =
       this.state;
     return (
-      <EditorC>
-        <AvatarEC>
-          <Avatar avatar={avatar} sizeX={sizeX} />
-        </AvatarEC>
-        <Editor toggle={editorToggle}>
-          <EHeader>
-            <EHToggle
-              toggle={editorToggle}
-              page={editorPage}
-              onPress={this.editorToggle}
-            >
-              <AntDesign name="downcircle" size={35} color="#c4c4c4" />
-            </EHToggle>
-            <EHTabs horizontal={true}>
-              <EHTab
-                id="head"
-                active={editorPart === 'head'}
-                onPress={() => this.editorPartSelect('head')}
+      <Container>
+        <EditorC>
+          <AvatarEC>
+            <Avatar avatar={avatar} sizeX={sizeX} />
+          </AvatarEC>
+          <Editor toggle={editorToggle}>
+            <EHeader>
+              <EHToggle
+                toggle={editorToggle}
+                page={editorPage}
+                onPress={this.editorToggle}
               >
-                <Head type={1} color={'#000'} />
-              </EHTab>
-              <EHTab
-                id="hair"
-                active={editorPart === 'hair'}
-                onPress={() => this.editorPartSelect('hair')}
-              >
-                <Hair type={1} color={'#000'} />
-              </EHTab>
-              <EHTab
-                id="eyeL"
-                active={editorPart === 'eyeL'}
-                onPress={() => this.editorPartSelect('eyeL')}
-              >
-                <Eye type={1} />
-              </EHTab>
-              <EHTab
-                id="eyeR"
-                active={editorPart === 'eyeR'}
-                onPress={() => this.editorPartSelect('eyeR')}
-              >
-                <Eye type={1} />
-              </EHTab>
-              <EHTab
-                id="ear"
-                active={editorPart === 'ear'}
-                onPress={() => this.editorPartSelect('ear')}
-              >
-                <Ear type={1} />
-              </EHTab>
-              <EHTab
-                id="nose"
-                active={editorPart === 'nose'}
-                onPress={() => this.editorPartSelect('nose')}
-              >
-                <Nose type={1} />
-              </EHTab>
-              <EHTab
-                id="mouth"
-                active={editorPart === 'mouth'}
-                onPress={() => this.editorPartSelect('mouth')}
-              >
-                <Mouth type={1} />
-              </EHTab>
-            </EHTabs>
-          </EHeader>
-          <EContent toggle={editorToggle}>
-            {editorPage === 0 ? (
-              <EPartsC>{parts}</EPartsC>
-            ) : (
-              <AvatarPartEditor
-                changeX={this.changeX}
-                changeY={this.changeY}
-                changeSize={this.changeSize}
-                changeRot={this.changeRot}
-              />
-            )}
-          </EContent>
-        </Editor>
-      </EditorC>
+                <AntDesign name="downcircle" size={35} color="#c4c4c4" />
+              </EHToggle>
+              <EHTabs horizontal={true}>
+                <EHTab
+                  id="head"
+                  active={editorPart === 'head'}
+                  onPress={() => this.editorPartSelect('head')}
+                >
+                  <Head type={1} color={'#000'} />
+                </EHTab>
+                <EHTab
+                  id="hair"
+                  active={editorPart === 'hair'}
+                  onPress={() => this.editorPartSelect('hair')}
+                >
+                  <Hair type={1} color={'#000'} />
+                </EHTab>
+                <EHTab
+                  id="eyeL"
+                  active={editorPart === 'eyeL'}
+                  onPress={() => this.editorPartSelect('eyeL')}
+                >
+                  <Eye type={1} />
+                </EHTab>
+                <EHTab
+                  id="eyeR"
+                  active={editorPart === 'eyeR'}
+                  onPress={() => this.editorPartSelect('eyeR')}
+                >
+                  <Eye type={1} />
+                </EHTab>
+                <EHTab
+                  id="ear"
+                  active={editorPart === 'ear'}
+                  onPress={() => this.editorPartSelect('ear')}
+                >
+                  <Ear type={1} />
+                </EHTab>
+                <EHTab
+                  id="nose"
+                  active={editorPart === 'nose'}
+                  onPress={() => this.editorPartSelect('nose')}
+                >
+                  <Nose type={1} />
+                </EHTab>
+                <EHTab
+                  id="mouth"
+                  active={editorPart === 'mouth'}
+                  onPress={() => this.editorPartSelect('mouth')}
+                >
+                  <Mouth type={1} />
+                </EHTab>
+              </EHTabs>
+            </EHeader>
+            <EContent toggle={editorToggle}>
+              {editorPage === 0 ? (
+                <EPartsC>{parts}</EPartsC>
+              ) : (
+                <AvatarPartEditor
+                  changeX={this.changeX}
+                  changeY={this.changeY}
+                  changeSize={this.changeSize}
+                  changeRot={this.changeRot}
+                />
+              )}
+            </EContent>
+          </Editor>
+        </EditorC>
+      </Container>
     );
   }
 }
