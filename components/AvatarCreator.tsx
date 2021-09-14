@@ -188,7 +188,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
           </ECPart>,
         );
       }
-      parts.push(<EPartsCR>{x}</EPartsCR>);
+      parts.push(<EPartsCR key={i}>{x}</EPartsCR>);
     }
     this.setState({ parts: parts, avatar: this.props.avatar });
     //this.getUserAvatar();

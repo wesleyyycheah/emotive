@@ -110,7 +110,7 @@ const Login = (props: LoginProps) => {
       await axios
         .request<any>({
           method: 'post',
-          url: API + 'user/create',
+          url: API + 'user/create/',
           data: {
             firstName: first,
             lastName: last,
@@ -118,10 +118,7 @@ const Login = (props: LoginProps) => {
             passwordHash: hash,
           },
         })
-        .then((response) => {
-          props.setUser(response.data);
-          props.navigation.navigate('AvatarCreator');
-        });
+        .then(logInUser);
     });
   };
 
