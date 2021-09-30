@@ -12,7 +12,6 @@ const Container = styled.View`
   flex: 1;
   background-color: #fff;
   align-items: center;
-  justify-content: center;
 `;
 const SignUp = styled.KeyboardAvoidingView<{ signUp: boolean }>`
   position: absolute;
@@ -32,7 +31,6 @@ const LogIn = styled.KeyboardAvoidingView`
   background-color: #ffffff;
 `;
 const Logo = styled.Image`
-  position: absolute;
   top: 5%;
   resize-mode: contain;
   width: 75%;
@@ -124,6 +122,7 @@ const Login = (props: LoginProps) => {
 
   return (
     <Container>
+      <Logo source={splash} />
       <LogIn behavior="padding" keyboardVerticalOffset={50}>
         <Field
           signUp={false}
@@ -143,7 +142,7 @@ const Login = (props: LoginProps) => {
           <BText> login</BText>
         </Submit>
       </LogIn>
-      <SignUp signUp={signUp} behavior="padding" keyboardVerticalOffset={50}>
+      {/* <SignUp signUp={signUp} behavior="padding" keyboardVerticalOffset={50}>
         {!signUp ? (
           <Toggle
             onPress={() => {
@@ -201,8 +200,7 @@ const Login = (props: LoginProps) => {
         ) : (
           <></>
         )}
-      </SignUp>
-      <Logo source={splash} />
+      </SignUp> */}
     </Container>
   );
 };
