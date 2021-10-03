@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import { TextInput } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import styled from 'styled-components/native';
-import splash from '../assets/logo.png';
+import splash from '../../assets/logo.png';
 import axios from 'axios';
 import { API } from '@env';
 import * as Crypto from 'expo-crypto';

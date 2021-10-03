@@ -1,19 +1,20 @@
 import * as React from 'react';
 import { Component } from 'react';
 import styled from 'styled-components/native';
-import Avatar from './Avatar';
+import Avatar from '../Avatar';
 import { Dimensions } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import axios from 'axios';
-import Head from './AvatarParts/Head';
-import Hair from './AvatarParts/Hair';
-import Eye from './AvatarParts/Eye';
-import Nose from './AvatarParts/Nose';
-import Mouth from './AvatarParts/Mouth';
-import Ear from './AvatarParts/Ear';
-import Brow from './AvatarParts/Brow';
+import Head from '../AvatarParts/Head';
+import Hair from '../AvatarParts/Hair';
+import Eye from '../AvatarParts/Eye';
+import Nose from '../AvatarParts/Nose';
+import Mouth from '../AvatarParts/Mouth';
+import Ear from '../AvatarParts/Ear';
+import Brow from '../AvatarParts/Brow';
 import { API } from '@env';
-import AvatarPartEditor from './AvatarPartEditor';
+import AvatarPartEditor from '../AvatarPartEditor';
+import Emotions from '../AvatarParts/Emotions';
 //type definitions
 type avatarKey =
   | 'hair'
@@ -134,11 +135,33 @@ const ECPart = styled.Pressable<{ key: number }>`
   background: #c4c4c4;
 `;
 
-const AvatarEC = styled.View`
+const AvatarEC = styled.TouchableOpacity`
   flex: 10;
   justify-content: center;
   align-items: center;
 `;
+
+const Done = styled.TouchableOpacity`
+  color: #ffffff;
+  background-color: #ff6085;
+  margin: 5px;
+  padding: 10px;
+  font-family: Comfortaa_300Light;
+  font-size: 24px;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  border-radius: 25px;
+  top: 10px;
+  right: 5px;
+  position: absolute;
+`;
+const BText = styled.Text`
+  color: #ffffff;
+  font-family: Comfortaa_300Light;
+  font-size: 24px;
+`;
+
 type AvatarType = {
   [key in avatarKey]: {
     color: string;
@@ -156,8 +179,14 @@ type CreatorState = {
   editorToggle: boolean;
   editorPart: avatarKey;
   parts: Array<JSX.Element>;
+  emotion: number;
 };
-type CreatorProps = { userID: string; avatar: AvatarType };
+type CreatorProps = {
+  userID: string;
+  avatar: AvatarType;
+  navigation: any;
+  setNav: Function;
+};
 
 class AvatarCreator extends Component<CreatorProps, CreatorState> {
   constructor(props: CreatorProps) {
@@ -242,6 +271,7 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
       editorToggle: true,
       editorPart: 'head',
       parts: [],
+      emotion: 0,
     };
     this.editorPartSelect = this.editorPartSelect.bind(this);
     this.editorToggle = this.editorToggle.bind(this);
@@ -435,13 +465,26 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
   }
 
   render() {
-    let { avatar, sizeX, editorToggle, editorPart, parts, editorPage } =
-      this.state;
+    let {
+      avatar,
+      sizeX,
+      editorToggle,
+      editorPart,
+      parts,
+      editorPage,
+      emotion,
+    } = this.state;
     return (
       <Container>
         <EditorC>
-          <AvatarEC>
-            <Avatar avatar={avatar} sizeX={sizeX} emotion={0} />
+          <AvatarEC
+            onPress={() => {
+              this.setState({
+                emotion: (emotion + 1) % (Emotions.length - 1),
+              });
+            }}
+          >
+            <Avatar avatar={avatar} sizeX={sizeX} emotion={emotion} />
           </AvatarEC>
           <Editor toggle={editorToggle}>
             <EHeader>
@@ -518,6 +561,14 @@ class AvatarCreator extends Component<CreatorProps, CreatorState> {
             </EContent>
           </Editor>
         </EditorC>
+        <Done
+          onPress={() => {
+            this.props.setNav(true);
+            this.props.navigation.navigate('Home');
+          }}
+        >
+          <BText>Done</BText>
+        </Done>
       </Container>
     );
   }

@@ -142,7 +142,7 @@ const partsModifier: partsType = {
   ],
   browL: [
     [
-      { size: 0, top: 0, left: 0, rot: 0 },
+      { size: 0, top: 0, left: 0, rot: 15 },
       { size: 0, top: 0, left: 0, rot: 0 },
       { size: 0, top: 0, left: 0, rot: 0 },
     ],
@@ -164,7 +164,7 @@ const partsModifier: partsType = {
   ],
   browR: [
     [
-      { size: 0, top: 0, left: 0, rot: 0 },
+      { size: 0, top: 0, left: 0, rot: -15 },
       { size: 0, top: 0, left: 0, rot: 0 },
       { size: 0, top: 0, left: 0, rot: 0 },
     ],

@@ -11,9 +11,14 @@ import {
 } from '@expo-google-fonts/comfortaa';
 import { Satisfy_400Regular } from '@expo-google-fonts/satisfy';
 import AppLoading from 'expo-app-loading';
-import AvatarCreator from './components/AvatarCreator';
+import AvatarCreator from './components/screens/AvatarCreator';
 import NavBar from './components/NavBar';
-import Login from './components/Login';
+import Login from './components/screens/Login';
+import Home from './components/screens/Home';
+import People from './components/screens/People';
+import LogEmotion from './components/screens/LogEmotion';
+import Goals from './components/screens/Goals';
+import Calendar from './components/screens/Calendar';
 const Stack = createNativeStackNavigator();
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -103,6 +108,8 @@ export default function App() {
     emailVerification: false,
   };
   const [user, setUser] = useState(blankUser);
+  const [nav, setNav] = useState(false);
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -118,11 +125,29 @@ export default function App() {
               {(props) => <Login {...props} setUser={setUser} />}
             </Stack.Screen>
             <Stack.Screen name="AvatarCreator">
-              {() => <AvatarCreator userID={user._id} avatar={user.avatar} />}
+              {(props) => (
+                <AvatarCreator
+                  {...props}
+                  userID={user._id}
+                  avatar={user.avatar}
+                  setNav={setNav}
+                />
+              )}
             </Stack.Screen>
+            <Stack.Screen name="Home">
+              {(props) => <LogEmotion userID={user._id} avatar={user.avatar} />}
+            </Stack.Screen>
+            <Stack.Screen name="Calendar">
+              {(props) => <Calendar />}
+            </Stack.Screen>
+            <Stack.Screen name="Goals">{(props) => <Goals />}</Stack.Screen>
+            <Stack.Screen name="LogEmotion">
+              {(props) => <LogEmotion avatar={user.avatar} userID={user._id} />}
+            </Stack.Screen>
+            <Stack.Screen name="People">{(props) => <People />}</Stack.Screen>
           </Stack.Navigator>
+          {nav ? <NavBar setNav={setNav} /> : <></>}
         </NavigationContainer>
-        {/* <NavBar /> */}
       </>
     );
   }

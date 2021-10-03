@@ -2,36 +2,289 @@ const Emotions = [
   {
     //0: Confident
     eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 2 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 3 },
+    browL: { size: 0, top: -1, left: 0, rot: -10, mode: 0 },
+    browR: { size: 0, top: -1, left: 0, rot: 10, mode: 0 },
+    mouth: { size: 0, top: 0, left: 0, rot: 5, mode: 3 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#40E0D0',
+  },
+  {
+    //1: Inspired
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 2 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 2 },
+    browL: { size: 0, top: 1, left: 0, rot: 0, mode: 1 },
+    browR: { size: 0, top: -1, left: 0, rot: 0, mode: 1 },
+    mouth: { size: 0, top: 0, left: 2, rot: -10, mode: 2 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#40E0D0',
+  },
+  {
+    //2: Joyful
+    eyeL: { size: 0, top: 0, left: 0, rot: -10, mode: 1 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 10, mode: 1 },
+    browL: { size: 0, top: 1, left: 0, rot: 0, mode: 1 },
+    browR: { size: 0, top: 1, left: 0, rot: 0, mode: 1 },
+    mouth: { size: 0, top: 0, left: 2, rot: -10, mode: 0 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#40E0D0',
+  },
+  {
+    //3: Suprised
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 2 },
     eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 2 },
     browL: { size: 0, top: 0, left: 0, rot: 0, mode: 1 },
-    browR: { size: 0, top: 0, left: 0, rot: 0, mode: 2 },
+    browR: { size: 0, top: 0, left: 0, rot: 0, mode: 1 },
+    mouth: { size: 0, top: 0, left: 0, rot: 0, mode: 4 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#40E0D0',
+  },
+  {
+    //4: Excited
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    browL: { size: 0, top: -1, left: 0, rot: 0, mode: 1 },
+    browR: { size: 0, top: -1, left: 0, rot: 0, mode: 1 },
+    mouth: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#40E0D0',
+  },
+  {
+    //5: Confused
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 2 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 5 },
+    browL: { size: 0, top: 0, left: 0, rot: 0, mode: 1 },
+    browR: { size: 0, top: 0, left: -4, rot: -20, mode: 2 },
+    mouth: { size: 0, top: 0, left: 0, rot: -10, mode: 8 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#40E0D0',
+  },
+  {
+    //6: Bored
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 4 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 4 },
+    browL: { size: 0, top: 1, left: 0, rot: 0, mode: 1 },
+    browR: { size: 0, top: 1, left: 0, rot: 0, mode: 1 },
     mouth: { size: 0, top: 0, left: 0, rot: 0, mode: 8 },
     ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#388659',
+  },
+  {
+    //7: Stressed
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 5 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 5 },
+    browL: { size: 0, top: 1, left: 2, rot: 0, mode: 2 },
+    browR: { size: 0, top: 1, left: -2, rot: -20, mode: 2 },
+    mouth: { size: 0, top: 0, left: 0, rot: 0, mode: 7 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#2BD9FE',
+  },
+  {
+    //8: Tired
+    eyeL: { size: 0, top: 2, left: 0, rot: 0, mode: 7 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 6 },
+    browL: { size: 0, top: 4, left: 1, rot: -10, mode: 0 },
+    browR: { size: 0, top: 4, left: -1, rot: 10, mode: 0 },
+    mouth: { size: 2, top: -2, left: 0, rot: -10, mode: 4 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#7B287D',
+  },
+  {
+    //9: Fearful
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 2 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 2 },
+    browL: { size: 0, top: 0, left: 0, rot: -15, mode: 1 },
+    browR: { size: 0, top: 0, left: 0, rot: 15, mode: 1 },
+    mouth: { size: 0, top: 0, left: 0, rot: 0, mode: 5 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#DE3163',
+  },
+  {
+    //10: Scared
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 3 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 3 },
+    browL: { size: 0, top: -1, left: 2, rot: -10, mode: 2 },
+    browR: { size: 0, top: -1, left: -2, rot: 10, mode: 2 },
+    mouth: { size: 0, top: 0, left: 0, rot: 0, mode: 7 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#7768AE',
+  },
+  {
+    //11: Anxious
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 3 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 3 },
+    browL: { size: 0, top: 0, left: 0, rot: -10, mode: 1 },
+    browR: { size: 0, top: 0, left: 0, rot: 10, mode: 1 },
+    mouth: { size: 0, top: 0, left: 0, rot: 0, mode: 7 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#EFBCD5',
+  },
+  {
+    //12: Hesitant
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 5 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 3 },
+    browL: { size: 0, top: 0, left: 0, rot: -10, mode: 2 },
+    browR: { size: 0, top: 0, left: 0, rot: 0, mode: 1 },
+    mouth: { size: 0, top: 0, left: 0, rot: 0, mode: 7 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#FFDCB4',
+  },
+  {
+    //13: Disappointed
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 4 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 4 },
+    browL: { size: 0, top: 0, left: 2, rot: 20, mode: 2 },
+    browR: { size: 0, top: 0, left: -2, rot: -20, mode: 2 },
+    mouth: { size: 0, top: -2, left: 0, rot: -20, mode: 6 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#40E0D0',
+  },
+  {
+    //14: Disgusted
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 3 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    browL: { size: 0, top: 0, left: 1, rot: 10, mode: 0 },
+    browR: { size: 0, top: 2, left: -2, rot: -20, mode: 2 },
+    mouth: { size: 0, top: 0, left: 0, rot: 10, mode: 5 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#4DCF8B',
+  },
+  {
+    //15: Angry
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 3 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    browL: { size: 0, top: 2, left: 2, rot: 10, mode: 0 },
+    browR: { size: 0, top: 3, left: -2, rot: -20, mode: 0 },
+    mouth: { size: 0, top: -1, left: 0, rot: 0, mode: 4 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#FFBF00',
+  },
+  {
+    //16: Frustrated
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 4 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 4 },
+    browL: { size: 0, top: 2, left: 1, rot: 10, mode: 0 },
+    browR: { size: 0, top: 1, left: -3, rot: -20, mode: 2 },
+    mouth: { size: 0, top: -2, left: 0, rot: -5, mode: 6 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#E36588',
+  },
+  {
+    //17: Let Down
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 4 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 4 },
+    browL: { size: 0, top: 0, left: 2, rot: -5, mode: 2 },
+    browR: { size: 0, top: 0, left: -2, rot: 5, mode: 2 },
+    mouth: { size: 0, top: 0, left: 0, rot: -10, mode: 6 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#C8FFBE',
+  },
+  {
+    //18: Sad
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    browL: { size: 0, top: 1, left: 2, rot: -5, mode: 2 },
+    browR: { size: 0, top: 1, left: -2, rot: 5, mode: 2 },
+    mouth: { size: 0, top: -2, left: 0, rot: 0, mode: 8 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#CCCCFF',
+  },
+  {
+    //19: Upset
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 3 },
+    eyeR: { size: 0, top: 0, left: 0, rot: 0, mode: 3 },
+    browL: { size: 0, top: 2, left: 2, rot: -5, mode: 2 },
+    browR: { size: 0, top: 2, left: -2, rot: 5, mode: 2 },
+    mouth: { size: 0, top: 0, left: 0, rot: -5, mode: 5 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#E5C687',
+  },
+  {
+    //20: Isolated
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 5 },
+    eyeR: { size: 0, top: 0, left: 0, rot: -5, mode: 3 },
+    browL: { size: 0, top: 2, left: 1, rot: -20, mode: 0 },
+    browR: { size: 0, top: 2, left: -1, rot: 20, mode: 0 },
+    mouth: { size: 0, top: 0, left: 0, rot: 0, mode: 6 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#4EA5D9',
+  },
+  {
+    //21: Gloomy
+    eyeL: { size: 0, top: 0, left: 0, rot: 0, mode: 4 },
+    eyeR: { size: 0, top: 0, left: 0, rot: -5, mode: 4 },
+    browL: { size: 0, top: 2, left: 1, rot: -10, mode: 0 },
+    browR: { size: 0, top: 2, left: -1, rot: 10, mode: 0 },
+    mouth: { size: 0, top: 0, left: 2, rot: 10, mode: 8 },
+    ear: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
+    color: '#7E7F83',
   },
 ];
-//Happy
-//Confident
-//Inspired
-//Joyful
-//Surprised
-//Excited
-//Confused
-//Bored
-//Stressed
-//Tired
-//Fearful
-//Anxious
-//Scared
-//Angry
-//Mad
-//Frustrated
-//Disgusted
-//Disappointed
-//Hesitant
-//Sad
-//Gloomy
-//Isolated
+
 export default Emotions;
