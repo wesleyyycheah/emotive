@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import styled from 'styled-components/native';
 import Avatar from '../Avatar';
 import Emotions from '../AvatarParts/Emotions';
+import EmotionLogPopup from '../EmotionLogPopup';
 
 const Emotion = styled.TouchableOpacity`
   height: 70px;
@@ -77,6 +78,8 @@ type Props = {
   avatar: AvatarType;
 };
 const LogEmotion = (props: Props) => {
+  const [emotionPopup, setEmotionPopup] = useState(false);
+  const [emotion, setEmotion] = useState(-1);
   const { avatar, userID } = props;
   return (
     <ScreenContainer>
@@ -93,6 +96,10 @@ const LogEmotion = (props: Props) => {
                   <Emotion
                     key={index}
                     style={{ backgroundColor: emotion.color }}
+                    onPress={() => {
+                      setEmotion(index);
+                      setEmotionPopup(true);
+                    }}
                   >
                     <Avatar avatar={avatar} sizeX={0.7} emotion={index} />
                   </Emotion>
@@ -102,6 +109,15 @@ const LogEmotion = (props: Props) => {
           </ScrollView>
         </HeaderContainer>
       </View>
+      {emotionPopup ? (
+        <EmotionLogPopup
+          setEmotionPopup={setEmotionPopup}
+          avatar={avatar}
+          emotion={emotion}
+        />
+      ) : (
+        <></>
+      )}
     </ScreenContainer>
   );
 };
