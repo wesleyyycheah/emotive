@@ -6,3 +6,5 @@ type CompProps = {};
 const Component = (props: CompProps) => {
   return <></>;
 };
+
+export default Component;

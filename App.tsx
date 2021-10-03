@@ -34,7 +34,6 @@ export default function App() {
         top: -17,
         left: 5,
         rot: 0,
-        mode: 0,
       },
       head: {
         color: '#e6c9a1',
@@ -43,7 +42,6 @@ export default function App() {
         top: 0,
         left: 0,
         rot: 0,
-        mode: 0,
       },
       ear: {
         color: '#e6c9a1',
@@ -52,7 +50,6 @@ export default function App() {
         top: 35,
         left: 60,
         rot: 0,
-        mode: 0,
       },
       eyeL: {
         color: '#fff',
@@ -61,7 +58,6 @@ export default function App() {
         top: 35,
         left: 15,
         rot: 0,
-        mode: 0,
       },
       eyeR: {
         color: '#fff',
@@ -70,7 +66,6 @@ export default function App() {
         top: 35,
         left: 37,
         rot: 0,
-        mode: 0,
       },
       nose: {
         color: '#e6c9a1',
@@ -79,16 +74,30 @@ export default function App() {
         top: 50,
         left: 25,
         rot: 0,
-        mode: 0,
       },
       mouth: {
         color: '#e6c9a1',
-        type: 7,
+        type: 0,
         size: 20,
         top: 65,
         left: 30,
         rot: 0,
-        mode: 0,
+      },
+      browL: {
+        color: '#291600',
+        type: 0,
+        size: 20,
+        top: 50,
+        left: 25,
+        rot: 0,
+      },
+      browR: {
+        color: '#291600',
+        type: 0,
+        size: 20,
+        top: 65,
+        left: 30,
+        rot: 0,
       },
     },
     emailVerification: false,
@@ -113,7 +122,7 @@ export default function App() {
             </Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
-        <NavBar />
+        {/* <NavBar /> */}
       </>
     );
   }

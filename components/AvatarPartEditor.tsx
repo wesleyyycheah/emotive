@@ -98,11 +98,11 @@ const AvatarPartEditor = (props: PartEditorProps) => {
           <AntDesign name="caretleft" size={100} color="#c4c4c4" />
         </Down>
       </PMover>
-      <RotL onPress={() => changeRot(1)}>
-        <FontAwesome name="rotate-right" size={40} color="#ececec" />
-      </RotL>
-      <RotR onPress={() => changeRot(-1)}>
+      <RotL onPress={() => changeRot(-1)}>
         <FontAwesome name="rotate-left" size={40} color="#ececec" />
+      </RotL>
+      <RotR onPress={() => changeRot(1)}>
+        <FontAwesome name="rotate-right" size={40} color="#ececec" />
       </RotR>
       <SizeUp onPress={() => changeSize(1)}>
         <Entypo name="resize-full-screen" size={40} color="#ececec" />
