@@ -10,7 +10,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#40E0D0',
+    color: '#4DCF8B',
   },
   {
     //1: Inspired
@@ -23,7 +23,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#40E0D0',
+    color: '#CF77E5',
   },
   {
     //2: Joyful
@@ -49,7 +49,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#40E0D0',
+    color: '#FFAA46',
   },
   {
     //4: Excited
@@ -62,7 +62,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#40E0D0',
+    color: '#EC5AB2',
   },
   {
     //5: Confused
@@ -75,7 +75,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#40E0D0',
+    color: '#6495ED',
   },
   {
     //6: Bored
@@ -88,7 +88,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#388659',
+    color: '#3EA875',
   },
   {
     //7: Stressed
@@ -101,7 +101,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#2BD9FE',
+    color: '#FFEA2C',
   },
   {
     //8: Tired
@@ -114,7 +114,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#7B287D',
+    color: '#B483E5',
   },
   {
     //9: Fearful
@@ -140,7 +140,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#7768AE',
+    color: '#B1E857',
   },
   {
     //11: Anxious
@@ -153,7 +153,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#EFBCD5',
+    color: '#FFBF00',
   },
   {
     //12: Hesitant
@@ -166,7 +166,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#FFDCB4',
+    color: '#9292FF',
   },
   {
     //13: Disappointed
@@ -179,7 +179,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#40E0D0',
+    color: '#FF7F50',
   },
   {
     //14: Disgusted
@@ -192,7 +192,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#4DCF8B',
+    color: '#96CF4D',
   },
   {
     //15: Angry
@@ -205,7 +205,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#FFBF00',
+    color: '#EE2D2D',
   },
   {
     //16: Frustrated
@@ -218,7 +218,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#E36588',
+    color: '#FF5841',
   },
   {
     //17: Let Down
@@ -231,7 +231,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#C8FFBE',
+    color: '#40C3E0',
   },
   {
     //18: Sad
@@ -244,7 +244,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#CCCCFF',
+    color: '#31A1D0',
   },
   {
     //19: Upset
@@ -257,7 +257,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#E5C687',
+    color: '#40E09D',
   },
   {
     //20: Isolated
@@ -283,7 +283,7 @@ const Emotions = [
     nose: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     head: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
     hair: { size: 0, top: 0, left: 0, rot: 0, mode: 0 },
-    color: '#7E7F83',
+    color: '#7764ED',
   },
 ];
 

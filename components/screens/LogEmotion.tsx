@@ -90,7 +90,10 @@ const LogEmotion = (props: Props) => {
             <ButtonPosition>
               {Emotions.map((emotion, index) => {
                 return (
-                  <Emotion style={{ backgroundColor: emotion.color }}>
+                  <Emotion
+                    key={index}
+                    style={{ backgroundColor: emotion.color }}
+                  >
                     <Avatar avatar={avatar} sizeX={0.7} emotion={index} />
                   </Emotion>
                 );
