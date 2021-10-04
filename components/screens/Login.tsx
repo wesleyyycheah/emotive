@@ -1,23 +1,23 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { ScrollView } from 'react-native';
+import { useState, useRef } from 'react';
+import { TextInput } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import styled from 'styled-components/native';
-import splash from '../assets/logo.png';
+import splash from '../../assets/logo.png';
 import axios from 'axios';
 import { API } from '@env';
 import * as Crypto from 'expo-crypto';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const Container = styled.View`
   flex: 1;
   background-color: #fff;
   align-items: center;
-  justify-content: center;
 `;
-const SignUp = styled.KeyboardAvoidingView<{ signUp: boolean }>`
+const SignUp = styled.View<{ signUp: boolean }>`
   position: absolute;
   bottom: 0;
-  height: ${(props) => (props.signUp ? '75%' : '10%')};
+  height: ${(props) => (props.signUp ? '650px' : '90px')};
   width: 100%;
   color: #ffffff;
   background-color: #de3163;
@@ -26,18 +26,22 @@ const SignUp = styled.KeyboardAvoidingView<{ signUp: boolean }>`
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
+  padding-bottom: 5px;
   overflow: hidden;
 `;
-const LogIn = styled.KeyboardAvoidingView`
+const LogIn = styled.View`
   background-color: #ffffff;
 `;
 const Logo = styled.Image`
-  position: absolute;
-  top: 5%;
   resize-mode: contain;
   width: 75%;
+  height: 20%;
+  margin: 0;
+  margin-top: 20%;
 `;
-const Field = styled.TextInput<{ signUp: boolean }>`
+const Field = styled.TextInput<{
+  signUp: boolean;
+}>`
   background-color: ${(props) => (props.signUp ? '#FFFFFF' : '#DCDADA')};
   color: #959595;
   border-radius: 25px;
@@ -52,6 +56,7 @@ const Submit = styled.TouchableOpacity`
   color: #ffffff;
   background-color: #ff6085;
   border-radius: 25px;
+  margin-bottom: 25px;
   margin-top: 50px;
   padding: 10px;
   font-family: Comfortaa_300Light;
@@ -80,6 +85,10 @@ const Login = (props: LoginProps) => {
   const [pass, setPass] = useState('');
   const [first, setFirst] = useState('');
   const [last, setLast] = useState('');
+
+  const lastNameRef = useRef<TextInput>(null);
+  const passSURef = useRef<TextInput>(null);
+  const emailSURef = useRef<TextInput>(null);
 
   const logInUser = async () => {
     await Crypto.digestStringAsync(
@@ -124,13 +133,19 @@ const Login = (props: LoginProps) => {
 
   return (
     <Container>
-      <LogIn behavior="padding" keyboardVerticalOffset={50}>
+      <Logo source={splash} />
+      <KeyboardAwareScrollView
+        style={{ flex: 1 }}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        scrollEnabled={true}
+      >
         <Field
           signUp={false}
           autoCompleteType="email"
           value={email}
           onChangeText={(text) => setEmail(text)}
           placeholder="email"
+          autoCapitalize="none"
         />
         <Field
           signUp={false}
@@ -138,12 +153,14 @@ const Login = (props: LoginProps) => {
           value={pass}
           onChangeText={(text) => setPass(text)}
           placeholder="password"
+          secureTextEntry={true}
+          autoCapitalize="none"
         />
         <Submit activeOpacity={0.6} onPress={logInUser}>
           <BText> login</BText>
         </Submit>
-      </LogIn>
-      <SignUp signUp={signUp} behavior="padding" keyboardVerticalOffset={50}>
+      </KeyboardAwareScrollView>
+      <SignUp signUp={signUp}>
         {!signUp ? (
           <Toggle
             onPress={() => {
@@ -156,13 +173,21 @@ const Login = (props: LoginProps) => {
         ) : (
           <></>
         )}
-        <ScrollView>
+        <KeyboardAwareScrollView
+          style={{ flex: 1 }}
+          resetScrollToCoords={{ x: 0, y: 0 }}
+          scrollEnabled={false}
+        >
           <Field
             signUp={true}
             autoCompleteType="name"
             value={first}
             onChangeText={(text) => setFirst(text)}
             placeholder="first name"
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              lastNameRef.current?.focus();
+            }}
           />
           <Field
             signUp={true}
@@ -170,6 +195,11 @@ const Login = (props: LoginProps) => {
             value={last}
             onChangeText={(text) => setLast(text)}
             placeholder="last name"
+            ref={lastNameRef}
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              emailSURef.current?.focus();
+            }}
           />
           <Field
             signUp={true}
@@ -177,6 +207,12 @@ const Login = (props: LoginProps) => {
             value={email}
             onChangeText={(text) => setEmail(text)}
             placeholder="email"
+            autoCapitalize="none"
+            ref={emailSURef}
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              passSURef.current?.focus();
+            }}
           />
           <Field
             signUp={true}
@@ -184,11 +220,14 @@ const Login = (props: LoginProps) => {
             value={pass}
             onChangeText={(text) => setPass(text)}
             placeholder="password"
+            secureTextEntry={true}
+            autoCapitalize="none"
+            ref={passSURef}
           />
           <Submit activeOpacity={0.6} onPress={signUpUser}>
             <BText>Create Account</BText>
           </Submit>
-        </ScrollView>
+        </KeyboardAwareScrollView>
         {signUp ? (
           <Toggle
             onPress={() => {
@@ -202,7 +241,6 @@ const Login = (props: LoginProps) => {
           <></>
         )}
       </SignUp>
-      <Logo source={splash} />
     </Container>
   );
 };
