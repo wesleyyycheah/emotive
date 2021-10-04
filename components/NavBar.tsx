@@ -16,7 +16,7 @@ const Tab = styled.Pressable<{ selected: boolean }>`
   border-top-left-radius: ${(props) => (props.selected ? '25px' : '10px')};
   border-top-right-radius: ${(props) => (props.selected ? '25px' : '10px')};
   height: ${(props) => (props.selected ? '80px' : '60px')};
-  background: ${(props) => (props.selected ? '#ff6085' : '#de3163')};
+  background: ${(props) => props.color};
   align-items: center;
   justify-content: center;
 `;
@@ -34,22 +34,8 @@ const NavBar = (props: NavBarProps) => {
   return (
     <NavBarContainer>
       <Tab
-        selected={tab.goals}
-        onPress={() => {
-          setTab({
-            goals: true,
-            people: false,
-            home: false,
-            cal: false,
-            settings: false,
-          });
-          navigation.navigate('Goals', {});
-        }}
-      >
-        <AntDesign name="star" size={tab.goals ? 45 : 35} color="white" />
-      </Tab>
-      <Tab
         selected={tab.people}
+        color={!tab.people ? '#DE3163' : '#F293AF'}
         onPress={() => {
           setTab({
             goals: false,
@@ -64,7 +50,24 @@ const NavBar = (props: NavBarProps) => {
         <Ionicons name="heart" size={tab.people ? 45 : 35} color="white" />
       </Tab>
       <Tab
+        selected={tab.goals}
+        color={!tab.goals ? '#FFBF00' : '#FFDCB4'}
+        onPress={() => {
+          setTab({
+            goals: true,
+            people: false,
+            home: false,
+            cal: false,
+            settings: false,
+          });
+          navigation.navigate('Goals', {});
+        }}
+      >
+        <AntDesign name="star" size={tab.goals ? 45 : 35} color="white" />
+      </Tab>
+      <Tab
         selected={tab.home}
+        color={!tab.home ? '#4DCF8B' : '#9FE2BF'}
         onPress={() => {
           setTab({
             goals: false,
@@ -80,6 +83,7 @@ const NavBar = (props: NavBarProps) => {
       </Tab>
       <Tab
         selected={tab.cal}
+        color={!tab.cal ? '#6495ED' : '#B7CFF9'}
         onPress={() => {
           setTab({
             goals: false,
@@ -94,6 +98,7 @@ const NavBar = (props: NavBarProps) => {
         <Ionicons name="calendar" size={tab.cal ? 45 : 35} color="white" />
       </Tab>
       <Tab
+        color={!tab.set ? '#9292FF' : '#CCCCFF'}
         selected={tab.settings}
         onPress={() => {
           setNav(false);

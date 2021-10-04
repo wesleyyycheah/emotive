@@ -137,7 +137,7 @@ export default function App() {
               {(props) => <LogEmotion userID={user._id} avatar={user.avatar} />}
             </Stack.Screen>
             <Stack.Screen name="Calendar">
-              {(props) => <Calendar />}
+              {(props) => <Calendar userID={user._id} avatar={user.avatar} />}
             </Stack.Screen>
             <Stack.Screen name="Goals">{(props) => <Goals />}</Stack.Screen>
             <Stack.Screen name="LogEmotion">

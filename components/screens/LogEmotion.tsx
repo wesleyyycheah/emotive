@@ -34,6 +34,7 @@ const ButtonPosition = styled.View`
 
 const DateSize = styled.Text`
   font-size: 20px;
+  font-family: Comfortaa_300Light;
 `;
 
 const DateView = styled.View`
@@ -51,7 +52,8 @@ const HeaderContainer = styled.View`
 `;
 
 const HeaderText = styled.Text`
-  font-size: 35px;
+  font-size: 30px;
+  font-family: Comfortaa_300Light;
 `;
 type avatarKey =
   | 'hair'
